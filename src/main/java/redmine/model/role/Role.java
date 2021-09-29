@@ -7,6 +7,9 @@ import lombok.Setter;
 import redmine.model.Creatable;
 import redmine.model.Entity;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static redmine.model.StringUtils.*;
 
 /**
@@ -17,11 +20,12 @@ import static redmine.model.StringUtils.*;
 @Setter
 public class Role extends Entity implements Creatable<Role> {
 
-    private String name = randomHexString(10);
+    private String name = "RoleInProject" + randomHexString(10);
     private Integer position = 35;
     private Boolean assignable = true;
     private Builtin builtin = Builtin.CURRENT_ROLE;
-    private Permissions permissions = Permissions.ADD_DOCUMENTS;
+    //  EnumSet<Permissions> permissions = EnumSet.allOf(Permissions.class);
+    List<Permissions> permissionsList = Arrays.asList(Permissions.values());
     private IssuesVisibility issuesVisibility = IssuesVisibility.ALL;
     private UsersVisibility usersVisibility = UsersVisibility.ALL;
     private TimeEntriesVisibility timeEntriesVisibility = TimeEntriesVisibility.ALL;

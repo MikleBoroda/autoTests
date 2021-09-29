@@ -1,8 +1,11 @@
 package redmine.model.role;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 
 @AllArgsConstructor
+@Getter
 public enum Permissions {
     EDIT_PROJECT("Создание проекта"),
     SELECT_PROJECT_MODULES("Выбор модулей проекта"),
