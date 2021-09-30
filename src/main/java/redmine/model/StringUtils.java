@@ -11,6 +11,10 @@ public class StringUtils {
         return randomString(EN_STRING, length);
     }
 
+    public static String randomEmail(){
+        return randomHexString(6) + "@" + randomHexString(6) + "." + randomHexString(3);
+    }
+
     public static String randomString(String pattern, int length) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < length; i++) {
