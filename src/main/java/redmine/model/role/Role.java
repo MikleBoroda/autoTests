@@ -24,8 +24,7 @@ public class Role extends Entity implements Creatable<Role> {
     private Integer position = 35;
     private Boolean assignable = true;
     private Builtin builtin = Builtin.CURRENT_ROLE;
-    //  EnumSet<Permissions> permissions = EnumSet.allOf(Permissions.class);
-    List<Permissions> permissionsList = Arrays.asList(Permissions.values());
+    private List<Permissions> permissionsList = Arrays.asList(Permissions.values());
     private IssuesVisibility issuesVisibility = IssuesVisibility.ALL;
     private UsersVisibility usersVisibility = UsersVisibility.ALL;
     private TimeEntriesVisibility timeEntriesVisibility = TimeEntriesVisibility.ALL;
