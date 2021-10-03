@@ -18,7 +18,7 @@ public class Email extends CreatableEntity implements Creatable<Email> {
     private Boolean isDefault = true;
     private Boolean notify = true;
 
-    Email(User user) {
+    public Email(User user) {
         this.userid = user.id;
         user.getEmails().add(this);
     }
