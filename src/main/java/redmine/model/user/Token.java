@@ -3,6 +3,7 @@ package redmine.model.user;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import redmine.db.reauests.TokenRequests;
 import redmine.model.Creatable;
 import redmine.model.CreatableEntity;
 
@@ -17,15 +18,15 @@ public class Token extends CreatableEntity implements Creatable<Token> {
     private TokenType action = TokenType.API; //api || feeds || session
     private String value = randomHexString(16);
 
-    Token(User user) {
-
+    public Token(User user) {
         this.userid = user.id;
+        user.getTokens().add(this);
     }
 
     @Override
     public Token create() {
-        //todo: реализовать через базу SQl- запросы
-        return null;
+        new TokenRequests().create(this);
+        return this;
     }
 
 

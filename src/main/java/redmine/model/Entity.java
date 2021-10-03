@@ -8,5 +8,5 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 public abstract class Entity {
-    private Integer id;
+   public Integer id;
 }

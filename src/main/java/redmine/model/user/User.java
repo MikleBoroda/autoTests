@@ -2,6 +2,7 @@ package redmine.model.user;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import redmine.db.reauests.UserRequests;
 import redmine.model.Creatable;
 import redmine.model.CreatableEntity;
 import redmine.model.Entity;
@@ -45,7 +46,11 @@ public class User extends CreatableEntity implements Creatable<Entity> {
 
     @Override
     public User create() {
-        // TODO:Реализовать с помощью запроса к БД
-        throw new UnsupportedOperationException();
+        new UserRequests().create(this);
+        tokens.forEach(t -> t.setUserid(id));
+        emails.forEach(e -> e.setUserid(id));
+        tokens.forEach(Token::create);
+        emails.forEach(Email::create);
+        return this;
     }
 }
