@@ -1,4 +1,4 @@
-db.host=edu-at.dfu.i-teco.ru
+db.host=172.26.25.188
 db.port=5432
 db.database=db
 db.user=redmine_user
