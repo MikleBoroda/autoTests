@@ -27,14 +27,18 @@ public class PostgresConnection implements DatabaseConnection {
         connect();
     }
 
-    @SneakyThrows
+    @SneakyThrows // данная анатация превращает все проверяемые исключения в непроверяемые
     private void connect() {
 
-        Class.forName("org.postgresql.Driver");
+        Class.forName("org.postgresql.Driver"); //загрузка драйвера
+
+        //подключени к бд
         String url = String.format("jdbc:postgresql://%s:%d/%s", host, port, database);
         Properties connectionProperties = new Properties();
         connectionProperties.setProperty("user", user);
         connectionProperties.setProperty("password", password);
+
+        //создаем обьект типа connection
         connection = DriverManager.getConnection(url, connectionProperties);
 
     }
