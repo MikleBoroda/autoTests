@@ -2,7 +2,7 @@ package redmine.model.user;
 
 import lombok.*;
 import lombok.experimental.Accessors;
-import redmine.db.reauests.UserRequests;
+import redmine.db.reaquests.UserRequests;
 import redmine.model.Creatable;
 import redmine.model.CreatableEntity;
 import redmine.model.Entity;

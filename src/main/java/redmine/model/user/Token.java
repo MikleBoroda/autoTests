@@ -3,7 +3,7 @@ package redmine.model.user;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import redmine.db.reauests.TokenRequests;
+import redmine.db.reaquests.TokenRequests;
 import redmine.model.Creatable;
 import redmine.model.CreatableEntity;
 

@@ -1,4 +1,4 @@
-package redmine.db.reauests;
+package redmine.db.reaquests;
 
 import redmine.db.connection.PostgresConnection;
 import redmine.model.user.User;

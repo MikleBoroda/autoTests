@@ -1,4 +1,4 @@
-package redmine.db.reauests;
+package redmine.db.reaquests;
 
 public interface Delete {
     void delete(Integer id);
