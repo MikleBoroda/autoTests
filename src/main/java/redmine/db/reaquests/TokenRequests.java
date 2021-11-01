@@ -48,18 +48,17 @@ public class TokenRequests implements Create<Token>, ReadAll<Token> {
     }
 
     private Token from(Map<String, Object> data, User user) {
-        Token token = new Token(user);
-        token.setId((Integer) data.get("id"));
-        token.setAction(
-                Token.TokenType.valueOf(
-                        data.get("action").toString().toUpperCase()
+        Token token = (Token) new Token(user)
+                .setAction(
+                        Token.TokenType.valueOf(
+                                data.get("action").toString().toUpperCase()
+                        )
                 )
-        );
-        token.setValue((String) data.get("value"));
-        token.setCreatedOn(toLocalDate(data.get("created_on")));
-        token.setUpdatedOn(toLocalDate(data.get("updated_on")));
+                .setValue((String) data.get("value"))
+                .setCreatedOn(toLocalDate(data.get("created_on")))
+                .setUpdatedOn(toLocalDate(data.get("updated_on")))
+                .setId((Integer) data.get("id"));
         return token;
-
     }
 
     private LocalDateTime toLocalDate(Object timestamp) {
