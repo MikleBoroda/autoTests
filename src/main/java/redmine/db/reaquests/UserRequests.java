@@ -1,11 +1,13 @@
 package redmine.db.reaquests;
 
+import lombok.NoArgsConstructor;
 import redmine.db.connection.PostgresConnection;
 import redmine.model.user.User;
 
 import java.util.List;
 import java.util.Map;
 
+@NoArgsConstructor
 public class UserRequests implements Create<User>, Delete, Update<User> {
 
     @Override

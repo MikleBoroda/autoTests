@@ -9,7 +9,7 @@ public class DatabaseUserCreationTest {
     @Test
     public void userDatabaseCreationTests() {
         User user = new User();
-        user.setPassword("qazWSXedc");
+        user.setPassword("1qaz@WSX");
         user.setFirstName("Имя" + new Random().nextInt(100));
         user.setLastName("Фамилия" + new Random().nextInt(100));
 
@@ -22,7 +22,7 @@ public class DatabaseUserCreationTest {
         Email email3 = new Email(user);
         email3.setIsDefault(false);
         Email email4 = new Email(user);
-        email4.setAddress("ManualTesterMixa@SDET.ru");
+        email4.setAddress("ManualTester@autoTest.ru");
         email4.setIsDefault(false);
 
         user.create();
