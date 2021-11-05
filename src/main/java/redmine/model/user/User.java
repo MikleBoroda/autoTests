@@ -6,6 +6,8 @@ import redmine.db.reaquests.UserRequests;
 import redmine.model.Creatable;
 import redmine.model.CreatableEntity;
 import redmine.model.Entity;
+import redmine.model.project.Project;
+import redmine.model.role.Role;
 
 import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 import static redmine.model.StringUtils.randomHexString;
@@ -13,7 +15,9 @@ import static redmine.model.StringUtils.randomHexString;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,6 +43,11 @@ public class User extends CreatableEntity implements Creatable<Entity> {
     private LocalDateTime passwordChangedOn;
     private List<Token> tokens = new ArrayList<>();
     private List<Email> emails = new ArrayList<>();
+    private Map<Project, List<Role>> projectsMap = new HashMap<>();
+
+    public void addProjectAndRoles(Project project, List<Role> roles){
+        projectsMap.put(project,roles);
+    }
 
     public String getHashedPassword() {
         return sha1Hex(salt + sha1Hex(password));
