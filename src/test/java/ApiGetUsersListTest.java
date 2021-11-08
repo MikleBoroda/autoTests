@@ -5,6 +5,7 @@ import redmine.api.client.RestApiClient;
 import redmine.api.client.RestMethod;
 import redmine.api.client.RestRequest;
 import redmine.api.client.RestResponse;
+import redmine.api.dto.users.UsersListDto;
 import redmine.api.rest_assured.RestAssuredClient;
 import redmine.api.rest_assured.RestAssuredRequest;
 import redmine.model.user.Token;
@@ -37,9 +38,9 @@ public class ApiGetUsersListTest {
 
         Assert.assertEquals(response.getStatusCode(), 200);
 
-//        UsersListDto responseData = response.getPayload(UsersListDto.class);
-//
-//        Assert.assertEquals(responseData.getLimit().intValue(), 25);
+        UsersListDto responseData = response.getPayload(UsersListDto.class);
+
+        Assert.assertEquals(responseData.getLimit().intValue(), 25);
 
     }
 }

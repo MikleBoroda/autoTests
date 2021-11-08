@@ -9,6 +9,8 @@ import redmine.api.client.RestResponse;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static redmine.api.rest_assured.GsonProvider.*;
+
 @Getter
 public class RestAssuredResponse implements RestResponse {
     private int statusCode;
@@ -24,6 +26,6 @@ public class RestAssuredResponse implements RestResponse {
 
     @Override
     public <T> T getPayload(Class<T> clazz) {
-        return new Gson().fromJson(payload, clazz);
+        return GSON.fromJson(payload, clazz);
     }
 }

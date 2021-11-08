@@ -33,19 +33,19 @@ public class SimpleApiConnectionTest {
                 .statusCode(200);
     }
 
-    @Test
-    public void createUserTest() {
-        UserInfoDto body = new UserInfoDto(new UserDto("mixa", "kuznetsov", "mixa99", "mixa@kuznetsov.ru", "qazWSXedc")
-        );
-
-        ADMIN_REQUEST_SPECIFICATION
-                .contentType(ContentType.JSON)
-                .body(new Gson().toJson(body))
-                .request(Method.POST, "users.json")
-                .then()
-                .log().all()
-                .statusCode(201);
-        }
+//    @Test
+//    public void createUserTest() {
+//        UserInfoDto body = new UserInfoDto(new UserDto("mixa", "kuznetsov", "mixa99", "mixa@kuznetsov.ru", "qazWSXedc")
+//        );
+//
+//        ADMIN_REQUEST_SPECIFICATION
+//                .contentType(ContentType.JSON)
+//                .body(new Gson().toJson(body))
+//                .request(Method.POST, "users.json")
+//                .then()
+//                .log().all()
+//                .statusCode(201);
+//        }
 
 @Test
     public void testGetUser(){
