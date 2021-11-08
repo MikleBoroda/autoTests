@@ -61,8 +61,6 @@ public class SimpleApiConnectionTest {
             null,
             null,
             null
-
-
     ));
 
 }

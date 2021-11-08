@@ -5,6 +5,7 @@ import java.util.Random;
 public class StringUtils {
 
     public static final String EN_STRING = "abcdeifghijklmnop";
+    private static final String LATIN_PATTERN = "abcdefghijklmnopqrstuvwxyz";
     public static final Random RANDOM = new Random();
 
     public static String randomHexString(int length) {
@@ -12,7 +13,11 @@ public class StringUtils {
     }
 
     public static String randomEmail(){
-        return randomHexString(6) + "@" + randomHexString(6) + "." + randomHexString(3);
+        return randomEnglishString(6) + "@" + randomEnglishString(6) + "." + randomEnglishString(2);
+    }
+
+    public static String randomEnglishString(int length) {
+        return randomString(LATIN_PATTERN, length);
     }
 
     public static String randomString(String pattern, int length) {
@@ -20,7 +25,8 @@ public class StringUtils {
         for (int i = 0; i < length; i++) {
             int patternLength = pattern.length();
             int random = RANDOM.nextInt(patternLength);
-            sb.append(random);
+            char c = pattern.charAt(random);
+            sb.append(c);
         }
         return sb.toString();
     }
