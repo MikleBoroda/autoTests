@@ -2,13 +2,15 @@ package redmine.api.dto.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.experimental.Accessors;
+
 
 import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class UserInfoDto {
-    private UserDto user;
-
+@Accessors(chain = true)
+public class Errors {
+    List<String> errors;
 
 }

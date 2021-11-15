@@ -13,12 +13,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
+
     private Integer id;
     private String login;
     private Boolean admin;
+    private Integer status;
+
 
     @SerializedName("firstname")
-    private String firstname;
+    private String firstName;
 
     @SerializedName("lastname")
     private String lastName;

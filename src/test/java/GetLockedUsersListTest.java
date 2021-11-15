@@ -2,7 +2,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.api.client.RestApiClient;
-import redmine.api.client.RestMethod;
 import redmine.api.client.RestRequest;
 import redmine.api.client.RestResponse;
 import redmine.api.dto.users.UserDto;
@@ -58,7 +57,7 @@ public class GetLockedUsersListTest {
         ).findFirst().get();
 
         Assert.assertEquals(lockedUserFromApi.getMail(), lockedUser.getEmails().get(0).getAddress());
-        Assert.assertEquals(lockedUserFromApi.getFirstname(),lockedUser.getFirstName());
+        Assert.assertEquals(lockedUserFromApi.getFirstName(),lockedUser.getFirstName());
         Assert.assertEquals(lockedUserFromApi.getLastName(), lockedUser.getLastName());
 
     }

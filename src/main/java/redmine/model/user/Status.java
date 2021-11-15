@@ -12,4 +12,13 @@ public enum Status {
 
     public final int statusCode;
 
+    public static Status getIntStatus(int code) {
+        for (Status status : Status.values()) {
+            if (status.statusCode == code) {
+                return status;
+            }
+        }
+        throw new IllegalStateException("Такого статуса нет" + code);
+    }
+
 }

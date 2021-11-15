@@ -2,13 +2,14 @@ package redmine.db.reaquests;
 
 import lombok.NoArgsConstructor;
 import redmine.db.connection.PostgresConnection;
+import redmine.model.user.Status;
 import redmine.model.user.User;
 
 import java.util.List;
 import java.util.Map;
 
 @NoArgsConstructor
-public class UserRequests implements Create<User>, Delete, Update<User> {
+public class UserRequests implements Create<User>, Delete, Update<User>, Read<User> {
 
     @Override
     public void create(User user) {
@@ -93,4 +94,21 @@ public class UserRequests implements Create<User>, Delete, Update<User> {
         );
         user.setId(id);
     }
+
+//    SELECT id, login, hashed_password, firstname, lastname, "admin", status, last_login_on, "language", auth_source_id, created_on, updated_on, "type", identity_url, mail_notification, salt, must_change_passwd, passwd_changed_on
+//    FROM public.users;
+
+    @Override
+    public User read(Integer id) {
+        String query = "SELECT * FROM public.users WHERE id=?;\n";
+        List<Map<String, Object>> result = PostgresConnection.INSTANCE.executeQuery(query, id);
+        User user = new User();
+        user.setId((Integer) result.get(0).get("id"));
+        user.setStatus(Status.getIntStatus((Integer) result.get(0).get("status")));
+
+        return user;
+    }
+
+
 }
+

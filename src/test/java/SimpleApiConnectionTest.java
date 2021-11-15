@@ -1,13 +1,9 @@
-import com.google.gson.Gson;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
+
 import io.restassured.http.Method;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
 import redmine.api.client.RestApiClient;
 import redmine.api.client.RestMethod;
-import redmine.api.dto.users.UserDto;
-import redmine.api.dto.users.UserInfoDto;
 import redmine.api.rest_assured.RestAssuredClient;
 import redmine.api.rest_assured.RestAssuredRequest;
 import redmine.model.user.Token;
