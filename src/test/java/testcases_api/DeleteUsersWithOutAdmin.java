@@ -43,11 +43,13 @@ public class DeleteUsersWithOutAdmin {
 
     @Test
     public void deleteTwoUsers() {
+        //1. Отправить запрос DELETE на удаление пользователя из п.3, используя ключ из п.2. (удаление другого пользователя)
         request = new RestAssuredRequest(RestMethod.DELETE, "/users/" + secondUser.getId() + ".json", null, null, null);
         RestResponse response = client.execute(request);
         Assert.assertEquals(response.getStatusCode(), 403);
         Assert.assertNotNull(new UserRequests().read(secondUser.getId()));
 
+        //2. Отправить запрос DELETE на удаление пользователя из п.1, используя ключи из п.2 (удаление себя)
         request = new RestAssuredRequest(RestMethod.DELETE, "/users/" + firstUser.getId() + ".json", null, null, null);
         response = client.execute(request);
         Assert.assertEquals(response.getStatusCode(), 403);
