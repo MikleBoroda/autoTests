@@ -35,5 +35,9 @@ public class UserDto {
     @SerializedName("last_login_on")
     private LocalDateTime lastLoginOn;
 
+    @SerializedName("api_key")
+    private String apiKey;
+
+
 
 }

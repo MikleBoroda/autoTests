@@ -21,7 +21,6 @@ import redmine.model.user.User;
 
 
 import java.util.Collections;
-import java.util.NoSuchElementException;
 
 
 import static org.testng.Assert.*;
@@ -42,10 +41,6 @@ public class CrudUserAdminSystemTest {
 
         client = new RestAssuredClient(userAdmin);// заранее создал в памяти то что будет отправлять запрос
 
-        /**
-         * UserInfoDto - структура json
-         * UserDto - описание объектов json
-         */
         body = new UserInfoDto(
                 new UserDto()
                         .setLogin("Kuznetsov" + StringUtils.randomString("qazwsxedcedcrfvtgbyhnujmiklop", 3))
@@ -59,33 +54,11 @@ public class CrudUserAdminSystemTest {
     }
 
 
-    /*
-    1. Статус код ответа 201
-    2. Тело ответа содержит данные пользователя, в том числе его id
-    3. В базе данных есть информация о созданном пользователе, status = 2
-     */
-
-//    private Integer createPostUser() {
-//        RestRequest request = new RestAssuredRequest(RestMethod.POST, "/users.json", null, null, GsonProvider.GSON.toJson(body));
-//        RestResponse response = client.execute(request);
-//        assertEquals(response.getStatusCode(), 201);
-//
-//        UserDto userResponse = response.getPayload(UserInfoDto.class).getUser();
-//        assertTrue(userResponse.getId() > 0);
-//
-//        User user = new UserRequests().read(userResponse.getId());
-//        assertEquals(userResponse.getStatus(), user.getStatus());
-//
-//
-//        return userResponse.getId();
-//
-//    }
-
-
     @Test
     public void moveCrudTest() {
 
-        //Step1 Статус код ответа 201
+        //Step  Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно,
+        // пользователь должен иметь status = 2)
         request = new RestAssuredRequest(RestMethod.POST, "/users.json", null, null, GsonProvider.GSON.toJson(body));
 
         RestResponse response = client.execute(request);
@@ -131,8 +104,8 @@ public class CrudUserAdminSystemTest {
         request = new RestAssuredRequest(RestMethod.PUT, "/users/" + userResponse.getId() + ".json", null, null, GsonProvider.GSON.toJson(body));
         response = client.execute(request);
         assertEquals(response.getStatusCode(), 204);
-        User user2 = new UserRequests().read(userResponse.getId());
-        assertEquals(user2.getStatus(), Status.ACTIVE);
+        // User user2 = new UserRequests().read(userResponse.getId());
+        assertEquals(new UserRequests().read(userResponse.getId()).getStatus(), Status.ACTIVE);
 
         //Step 5. Отправить запрос GET на получение пользователя
         request = new RestAssuredRequest(RestMethod.GET, "/users/" + userResponse.getId() + ".json", null, null, GsonProvider.GSON.toJson(body));
@@ -146,7 +119,6 @@ public class CrudUserAdminSystemTest {
         request = new RestAssuredRequest(RestMethod.DELETE, "/users/" + userResponse.getId() + ".json", null, null, GsonProvider.GSON.toJson(body));
         response = client.execute(request);
         assertEquals(response.getStatusCode(), 204);
-
 
 
         //Step 7. Отправить запрос DELETE на удаление пользователя (повторно)
