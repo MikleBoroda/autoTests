@@ -1,6 +1,5 @@
 package testcases_api;
 
-import org.checkerframework.checker.units.qual.A;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -8,7 +7,6 @@ import redmine.api.client.RestApiClient;
 import redmine.api.client.RestMethod;
 import redmine.api.client.RestRequest;
 import redmine.api.client.RestResponse;
-import redmine.api.dto.users.UserInfoDto;
 import redmine.api.rest_assured.RestAssuredClient;
 import redmine.api.rest_assured.RestAssuredRequest;
 import redmine.db.reaquests.UserRequests;
@@ -54,7 +52,6 @@ public class DeleteUsersWithOutAdmin {
         response = client.execute(request);
         Assert.assertEquals(response.getStatusCode(), 403);
         Assert.assertNotNull(new UserRequests().read(firstUser.getId()));
-
 
     }
 }
