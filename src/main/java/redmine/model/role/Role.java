@@ -4,17 +4,15 @@ package redmine.model.role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.Accessors;
 import redmine.db.reaquests.RoleRequests;
 import redmine.model.Creatable;
 import redmine.model.Entity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
-import static redmine.model.StringUtils.*;
+import static redmine.utils.StringUtils.*;
 
 /**
  * Описание элементов модели "Роли"

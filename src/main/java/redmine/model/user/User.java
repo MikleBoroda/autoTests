@@ -10,7 +10,7 @@ import redmine.model.project.Project;
 import redmine.model.role.Role;
 
 import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
-import static redmine.model.StringUtils.randomHexString;
+import static redmine.utils.StringUtils.randomHexString;
 
 
 import java.time.LocalDateTime;

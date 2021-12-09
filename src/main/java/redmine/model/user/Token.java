@@ -7,7 +7,7 @@ import redmine.db.reaquests.TokenRequests;
 import redmine.model.Creatable;
 import redmine.model.CreatableEntity;
 
-import static redmine.model.StringUtils.randomHexString;
+import static redmine.utils.StringUtils.randomHexString;
 
 @Getter
 @Setter

@@ -14,7 +14,7 @@ import redmine.api.rest_assured.GsonProvider;
 import redmine.api.rest_assured.RestAssuredClient;
 import redmine.api.rest_assured.RestAssuredRequest;
 import redmine.db.reaquests.UserRequests;
-import redmine.model.StringUtils;
+import redmine.utils.StringUtils;
 import redmine.model.user.Status;
 import redmine.model.user.Token;
 import redmine.model.user.User;

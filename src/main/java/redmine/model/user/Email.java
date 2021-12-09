@@ -7,7 +7,7 @@ import redmine.db.reaquests.EmailRequests;
 import redmine.model.Creatable;
 import redmine.model.CreatableEntity;
 
-import static redmine.model.StringUtils.randomEmail;
+import static redmine.utils.StringUtils.randomEmail;
 
 @Getter
 @Setter

@@ -12,7 +12,7 @@ import redmine.api.dto.users.UserInfoDto;
 import redmine.api.rest_assured.GsonProvider;
 import redmine.api.rest_assured.RestAssuredClient;
 import redmine.api.rest_assured.RestAssuredRequest;
-import redmine.model.StringUtils;
+import redmine.utils.StringUtils;
 import redmine.model.user.Token;
 import redmine.model.user.User;
 

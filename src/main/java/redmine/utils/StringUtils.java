@@ -1,4 +1,4 @@
-package redmine.model;
+package redmine.utils;
 
 import java.util.Random;
 
