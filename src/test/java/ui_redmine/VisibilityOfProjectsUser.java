@@ -5,14 +5,15 @@ import org.testng.annotations.Test;
 import redmine.model.project.Project;
 import redmine.model.role.Permissions;
 import redmine.model.role.Role;
-import redmine.model.user.Status;
 import redmine.model.user.User;
+import redmine.ui.BrowserUtils;
 import ui_test.BaseUITest;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import static org.testng.Assert.*;
+
 
 public class VisibilityOfProjectsUser extends BaseUITest {
     private User userNotAdmin;
@@ -31,7 +32,7 @@ public class VisibilityOfProjectsUser extends BaseUITest {
             setPermissionsList(permissions);
         }}.create();
 
-        project1 = new Project(){{
+        project1 = new Project() {{
             setIsPublic(true);
         }}.create();
 
@@ -49,7 +50,6 @@ public class VisibilityOfProjectsUser extends BaseUITest {
         }}.create();
 
         project3.addUserAndRoles(userNotAdmin, Collections.singletonList(role));
-        Map<User, List<Role>> members = project3.getMembers();
         project3.create();
 
 
@@ -60,7 +60,13 @@ public class VisibilityOfProjectsUser extends BaseUITest {
 
     @Test
     public void VisibilityOfProjectsTest() {
+        assertEquals(headerPage.homePage.getText(), "Домашняя страница");
         headerPage.projects.click();
+        assertEquals(projectsUi.projectsTitle.getText(), "Проекты");
+        assertTrue(BrowserUtils.isElementCurrentlyDisplayed(project1.getName()));
+        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(project2.getName()));
+        assertTrue(BrowserUtils.isElementCurrentlyDisplayed(project3.getName()));
+
 
     }
 }

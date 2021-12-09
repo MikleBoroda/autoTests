@@ -32,9 +32,24 @@ public class BrowserUtils {
      * @param projectName - передается название проекта из БД
      *
      */
-    public static String checkProject(String projectName) {
+    public static WebElement checkProject(String projectName) {
+
         WebElement webElement = BrowserManager.getBrowser().getDriver().findElement(By.xpath("//div[@id='projects-index']//a[text()='" + projectName + "']"));
-        return webElement.getText();
+        return webElement;
     }
+
+
+    public static boolean isElementCurrentlyDisplayed(String projectName) {
+        try {
+            BrowserManager.getBrowser().getDriver().manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            WebElement webElement = BrowserManager.getBrowser().getDriver().findElement(By.xpath("//div[@id='projects-index']//a[text()='" + projectName + "']"));
+            return webElement.isDisplayed();
+        } catch (NoSuchElementException exception) {
+            return false;
+        } finally {
+            BrowserManager.getBrowser().getDriver().manage().timeouts().implicitlyWait(Property.getIntegerProperty("element.timeout"), TimeUnit.SECONDS);
+        }
+    }
+
 
 }
