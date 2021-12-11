@@ -9,28 +9,24 @@ import ui_test.BaseUITest;
 
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 import static redmine.utils.CompareUtils.*;
 
 public class SortingListOfUsersByUser extends BaseUITest {
-    private User admin;
-    private User user1;
-    private User user2;
 
 
     @BeforeMethod
     public void prepareFixtures() {
 
-        admin = new User() {{
+        User admin = new User() {{
             setIsAdmin(true);
         }}.create();
 
-        user1 = new User() {{
+        User user1 = new User() {{
             setStatus(Status.ACTIVE);
         }}.create();
 
-        user2 = new User() {{
+        User user2 = new User() {{
             setStatus(Status.ACTIVE);
         }}.create();
 
@@ -51,7 +47,6 @@ public class SortingListOfUsersByUser extends BaseUITest {
         assertTrue(userTablePage.tableUsers.isDisplayed());
 
 
-
         List<String> userNameAsc = BrowserUtils.getElementsText(userTablePage.userName);
         assertListSortedByUserNameAsc(userNameAsc);
 
@@ -59,9 +54,6 @@ public class SortingListOfUsersByUser extends BaseUITest {
 
         List<String> userNameDesc = BrowserUtils.getElementsText(userTablePage.userName);
         assertListSortedByUserNameDesc(userNameDesc);
-
-
-
 
 
     }

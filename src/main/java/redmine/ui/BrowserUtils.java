@@ -27,11 +27,7 @@ public class BrowserUtils {
         }
     }
 
-    /**
-     *
-     * @param projectName - передается название проекта из БД
-     *
-     */
+
     public static WebElement checkProject(String projectName) {
 
         WebElement webElement = BrowserManager.getBrowser().getDriver().findElement(By.xpath("//div[@id='projects-index']//a[text()='" + projectName + "']"));
