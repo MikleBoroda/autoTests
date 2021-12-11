@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
-public class ProjectsUi extends Page {
+public class ProjectsPage extends Page {
 
     @FindBy(xpath = "//div[@id='main-menu']//a[@class='projects']")
     public WebElement projectsSelect; //вкладка проекты

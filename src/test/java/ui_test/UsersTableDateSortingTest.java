@@ -38,10 +38,10 @@ public class UsersTableDateSortingTest extends BaseUITest {
         List<String> creationDatesByDesc = BrowserUtils.getElementsText(userTablePage.creationDates);
         assertListSortedByDateDesc(creationDatesByDesc);
 
-//        browser.actions()
-//                .contextClick(headerPage.loginButton)
-//                .doubleClick(headerPage.administration)
-//                .build().perform();//build - собираем, perform - выполняем
+//   browser.actions()
+//  .contextClick(headerPage.loginButton)
+//  .doubleClick(headerPage.administration)
+//  .build().perform();//build - собираем, perform - выполняем
 
 
         userTablePage.button("Создано").click();

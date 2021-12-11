@@ -62,11 +62,10 @@ public class VisibilityOfProjectsUser extends BaseUITest {
     public void VisibilityOfProjectsTest() {
         assertEquals(headerPage.homePage.getText(), "Домашняя страница");
         headerPage.projects.click();
-        assertEquals(projectsUi.projectsTitle.getText(), "Проекты");
+        assertEquals(projectsPage.projectsTitle.getText(), "Проекты");
         assertTrue(BrowserUtils.isElementCurrentlyDisplayed(project1.getName()));
         assertFalse(BrowserUtils.isElementCurrentlyDisplayed(project2.getName()));
         assertTrue(BrowserUtils.isElementCurrentlyDisplayed(project3.getName()));
-
 
     }
 }

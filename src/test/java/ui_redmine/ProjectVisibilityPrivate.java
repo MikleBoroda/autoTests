@@ -37,7 +37,7 @@ public class ProjectVisibilityPrivate extends BaseUITest {
 
         assertEquals(headerPage.homePage.getText(), "Домашняя страница");
         headerPage.projects.click();
-        assertEquals(projectsUi.projectsTitle.getText(), "Проекты");
+        assertEquals(projectsPage.projectsTitle.getText(), "Проекты");
         assertEquals(projectNotTied.getName(), BrowserUtils.checkProject(projectNotTied.getName()).getText());
 
 

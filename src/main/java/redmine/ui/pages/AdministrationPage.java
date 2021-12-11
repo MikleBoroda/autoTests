@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 
-
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 public class AdministrationPage extends Page {
 
@@ -16,7 +15,8 @@ public class AdministrationPage extends Page {
     @FindBy(xpath = "//div[@id='admin-menu']//a[contains(@class,'users')]")
     public WebElement users;
 
-
+    @FindBy(xpath = "//div[@id='content']//h2[text()='Администрирование']")
+    public WebElement administrationTitle;
 
 
 }
