@@ -15,6 +15,7 @@ public class BaseUITest {
     protected AdministrationPage administrationPage;
     protected UserTablePage userTablePage;
     protected ProjectsPage projectsPage;
+    protected NewUsersPage newUsersPage;
 
 
     protected void openBrowser() {
@@ -24,6 +25,7 @@ public class BaseUITest {
         administrationPage = getPage(AdministrationPage.class);
         userTablePage = getPage(UserTablePage.class);
         projectsPage = getPage(ProjectsPage.class);
+        newUsersPage = getPage(NewUsersPage.class);
 
 
     }

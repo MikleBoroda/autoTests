@@ -28,6 +28,9 @@ public class UserTablePage extends Page {
     @FindBy(xpath = "//div[@id='content']//table[@class='list users']")
     public WebElement tableUsers; // таблица пользователей
 
+    @FindBy(xpath = "//div[@id='content']//a[@class='icon icon-add']")
+    public WebElement addUserButton;
+
     public WebElement button(String text) {
         return BrowserManager.getBrowser().getDriver().findElement(By.xpath("//table[@class='list users']/thead//th[.='" + text + "']"));
     }

@@ -107,6 +107,18 @@ public class UserRequests implements Create<User>, Delete, Update<User>, Read<Us
         return user;
     }
 
+    public User read(String login) {
+        String query = "SELECT * FROM users WHERE login = ?";
+        List<Map<String, Object>> result = PostgresConnection.INSTANCE.executeQuery(query, login);
+        User user = new User();
+        user.setLogin((String) result.get(0).get("login"));
+
+        return user;
+
+
+    }
+
+
 
 }
 

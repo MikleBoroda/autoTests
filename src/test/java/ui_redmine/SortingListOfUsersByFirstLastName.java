@@ -92,9 +92,6 @@ public class SortingListOfUsersByFirstLastName extends BaseUITest {
         assertFalse(checkSortedList(lastNameDesc2));
 
 
-
-
-
     }
 
 }
