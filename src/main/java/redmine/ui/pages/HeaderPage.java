@@ -12,7 +12,8 @@ public class HeaderPage extends Page {
     @FindBy(xpath = "//div[@id='content']/h2")
     public WebElement homePageTitle; //Домашняя страница
 
-    @FindBy(xpath = "//div[@id='top-menu']//div[@id ='loggedas']")
+   // @FindBy(xpath = "//div[@id='top-menu']//div[@id ='loggedas']")
+    @FindBy(xpath = "//div[@id ='loggedas']")
     public WebElement enteredAs; //Войти как
 
     @FindBy(xpath = "//div[@id='top-menu']//a[contains(@class, 'user active')]")

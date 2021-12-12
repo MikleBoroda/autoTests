@@ -22,17 +22,10 @@ public class CreateUser extends BaseUITest {
 
         openBrowser();
         headerPage.loginButton.click();
-        loginPage.login(admin); //1
+        loginPage.login(admin);
     }
 
-    /*
 
-
-    3. Нажать "Новый пользователь"
-    4. Заполнить поля "Пользователь", "Имя", "Фамилия", "Email" корректными значениями
-    5. Установить чекбокс "Создание пароля"
-    6. Нажать кнопку Создать
-     */
     @Test(description = "8. Администрирование. Создание пользователя.")
     public void createUserTest() {
 
