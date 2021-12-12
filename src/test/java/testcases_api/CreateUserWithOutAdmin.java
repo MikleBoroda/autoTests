@@ -22,20 +22,17 @@ public class CreateUserWithOutAdmin {
 
     private RestApiClient client;
     private RestRequest request;
-    private User userNotAdmin;
-    private UserInfoDto bodyDto;
 
     @BeforeMethod
-
     public void prepareFixtures() {
 
-        userNotAdmin = new User() {{
+       User userNotAdmin = new User() {{
             setTokens(Collections.singletonList(new Token(this)));
         }}.create();
 
         client = new RestAssuredClient(userNotAdmin);
 
-        bodyDto = new UserInfoDto(
+        UserInfoDto bodyDto = new UserInfoDto(
                 new UserDto()
                         .setLogin("Kuznetsov" + StringUtils.randomString("qazwsxedcedcrfvtgbyhnujmiklop", 3))
                         .setFirstName("Mixa" + StringUtils.randomString("qazwsxedcedcrfvtgbyhnujmiklop", 3))

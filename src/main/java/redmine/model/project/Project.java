@@ -38,7 +38,6 @@ public class Project extends CreatableEntity implements Creatable<Project> {
     private Integer defaultVersionId; // id из таблицы Version
     private Integer defaultAssignedToId;
     private Map<User, List<Role>> members = new HashMap<>();
-    private Map<User, List<Role>> userMap = new HashMap<>();
 
 
     public void addUserAndRoles(User user, List<Role> roles) {

@@ -45,8 +45,8 @@ public class User extends CreatableEntity implements Creatable<Entity> {
     private List<Email> emails = new ArrayList<>();
     private Map<Project, List<Role>> projectsMap = new HashMap<>();
 
-    public void addProjectAndRoles(Project project, List<Role> roles){
-        projectsMap.put(project,roles);
+    public void addProjectAndRoles(Project project, List<Role> roles) {
+        projectsMap.put(project, roles);
     }
 
     public String getHashedPassword() {
@@ -57,7 +57,7 @@ public class User extends CreatableEntity implements Creatable<Entity> {
     public User create() {
         new UserRequests().create(this);
         tokens.forEach(t -> t.setUserid(id));
-        emails.forEach(e -> e.setUserid(id));
+        emails.forEach(e -> e.setUserId(id));
         tokens.forEach(Token::create);
         emails.forEach(Email::create);
         return this;

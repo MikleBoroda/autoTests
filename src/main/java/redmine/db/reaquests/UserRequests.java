@@ -39,8 +39,8 @@ public class UserRequests implements Create<User>, Delete, Update<User>, Read<Us
                 user.getMustChangePassword(),
                 user.getPasswordChangedOn()
         );
-        Integer userid = (Integer) result.get(0).get("id");
-        user.setId(userid);
+        Integer userId = (Integer) result.get(0).get("id");
+        user.setId(userId);
 
     }
 

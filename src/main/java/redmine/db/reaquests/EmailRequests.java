@@ -14,7 +14,6 @@ import java.util.Map;
 @AllArgsConstructor
 
 public class EmailRequests implements Create<Email> {
-    private User user;//т к юзер неразрывано связан с имейло то создаем его
 
     @Override
     public void create(Email email) {
@@ -22,7 +21,7 @@ public class EmailRequests implements Create<Email> {
                 "(id, user_id, address, is_default, \"notify\", created_on, updated_on)\n" +
                 "VALUES(DEFAULT, ?, ?, ?, ?, ?, ?) RETURNING id;\n";
 
-//передаем параметры которые будут подставлены вместо знака вопроса
+
         List<Map<String, Object>> result = PostgresConnection.INSTANCE.executeQuery(
                 query,
                 email.getUserid(),
@@ -32,7 +31,7 @@ public class EmailRequests implements Create<Email> {
                 email.getCreatedOn(),
                 email.getUpdatedOn()
         );
-        //послед этого мы получаем Id email
+
 
         Integer emailId = (Integer) result.get(0).get("id"); //в первом столбце в первой строке получим Id
         email.setId(emailId);//емейлу присваиваем  Id

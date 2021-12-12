@@ -13,13 +13,13 @@ import static redmine.utils.StringUtils.randomEmail;
 @Setter
 @Accessors(chain = true)
 public class Email extends CreatableEntity implements Creatable<Email> {
-    private Integer userid;
+    private Integer userId;
     private String address = randomEmail();
     private Boolean isDefault = true;
     private Boolean notify = true;
 
     public Email(User user) {
-        this.userid = user.id;
+        this.userId = user.id;
         user.getEmails().add(this);
     }
 

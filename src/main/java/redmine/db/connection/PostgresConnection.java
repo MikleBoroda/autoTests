@@ -10,8 +10,8 @@ import java.util.*;
 
 import org.postgresql.util.PSQLException;
 
-import static redmine.Property.Property.getIntegerProperty;
-import static redmine.Property.Property.getStringProperty;
+import static redmine.property.Property.getIntegerProperty;
+import static redmine.property.Property.getStringProperty;
 
 
 public class PostgresConnection implements DatabaseConnection {

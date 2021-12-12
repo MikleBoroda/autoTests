@@ -2,7 +2,7 @@ package redmine.ui;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import redmine.Property.Property;
+import redmine.property.Property;
 
 import java.util.List;
 

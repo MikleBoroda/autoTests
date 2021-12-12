@@ -7,13 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import redmine.Property.Property;
+import redmine.property.Property;
 
 
 import java.net.URL;
 import java.util.Map;
-
-import static org.openqa.selenium.remote.CapabilityType.BROWSER_VERSION;
 
 public class DriverFactory {
 

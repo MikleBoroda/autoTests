@@ -31,7 +31,7 @@ public class GetLockedUsersListTest {
         }}.create();
 
         lockedUser = new User() {{
-            setStatus(Status.LOKED);
+            setStatus(Status.LOCKED);
             setEmails(singletonList(new Email(this)));
         }}.create();
 

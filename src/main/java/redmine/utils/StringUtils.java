@@ -12,7 +12,7 @@ public class StringUtils {
         return randomString(EN_STRING, length);
     }
 
-    public static String randomEmail(){
+    public static String randomEmail() {
         return randomEnglishString(6) + "@" + randomEnglishString(6) + "." + randomEnglishString(2);
     }
 

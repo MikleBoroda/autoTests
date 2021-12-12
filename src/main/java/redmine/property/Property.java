@@ -1,4 +1,4 @@
-package redmine.Property;
+package redmine.property;
 
 import lombok.SneakyThrows;
 
@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 public class Property {
-    //todo: параметризовать системныой переменной
+
     private static String propertiesName = "default.properties";
     private static Properties properties = new Properties();
 
