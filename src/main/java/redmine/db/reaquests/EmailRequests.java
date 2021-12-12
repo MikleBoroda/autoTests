@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 @NoArgsConstructor
-@AllArgsConstructor
 
 public class EmailRequests implements Create<Email> {
 
@@ -24,7 +23,7 @@ public class EmailRequests implements Create<Email> {
 
         List<Map<String, Object>> result = PostgresConnection.INSTANCE.executeQuery(
                 query,
-                email.getUserid(),
+                email.getUserId(),
                 email.getAddress(),
                 email.getIsDefault(),
                 email.getNotify(),

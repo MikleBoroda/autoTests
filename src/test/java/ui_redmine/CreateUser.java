@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import redmine.db.reaquests.UserRequests;
 import redmine.model.user.Status;
 import redmine.model.user.User;
+import redmine.utils.StringUtils;
 import ui_test.BaseUITest;
 
 import static org.testng.Assert.assertEquals;
@@ -35,11 +36,11 @@ public class CreateUser extends BaseUITest {
         userTablePage.addUserButton.click();
         assertEquals(newUsersPage.newUsersTitle.getText(), "Пользователи » Новый пользователь");
 
-        newUsersPage.inputUserLogin.sendKeys("MixaAdmin12");
+        newUsersPage.inputUserLogin.sendKeys("Mixa" + StringUtils.randomString("qazwsxedcedcrfvtgbyhnujmiklop", 3));
         String login = newUsersPage.inputUserLogin.getAttribute("value");
-        newUsersPage.inputFirstName.sendKeys("Jon");
-        newUsersPage.inputLastName.sendKeys("ButtonWeek");
-        newUsersPage.inputEmail.sendKeys("butonW@yandex.com");
+        newUsersPage.inputFirstName.sendKeys("Mixail" + StringUtils.randomString("qazwsxedcedcrfvtgbyhnujmiklop", 3));
+        newUsersPage.inputLastName.sendKeys("Kuznetsov" + StringUtils.randomString("qazwsxedcedcrfvtgbyhnujmiklop", 3));
+        newUsersPage.inputEmail.sendKeys(StringUtils.randomEmail());
         newUsersPage.checkBoxGeneratePass.click();
         newUsersPage.createButton.click();
 
