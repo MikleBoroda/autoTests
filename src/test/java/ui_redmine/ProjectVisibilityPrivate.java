@@ -32,7 +32,7 @@ public class ProjectVisibilityPrivate extends BaseUITest {
 
     }
 
-    @Test
+    @Test(description = "4. Видимость проекта. Приватный проект. Администратор")
     public void privateProjectTest() {
         //1. Отображается домашняя страница
         assertEquals(headerPage.homePage.getText(), "Домашняя страница");
@@ -45,7 +45,6 @@ public class ProjectVisibilityPrivate extends BaseUITest {
 
         //На странице отображается проект из предусловия
         assertEquals(projectNotTied.getName(), BrowserUtils.checkProject(projectNotTied.getName()).getText());
-
 
     }
 }
