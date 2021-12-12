@@ -12,7 +12,9 @@ import static org.testng.Assert.*;
 public class VerifiedUser extends BaseUITest {
     private User user;
 
-    @BeforeMethod
+    @BeforeMethod(description =
+            "1. Заведен пользователь в системе.\n" +
+                    "2. Пользователь подтвержден администратором и не заблокирован")
     public void prepareFixtures() {
         user = new User() {{
             setStatus(Status.ACTIVE);
@@ -23,20 +25,29 @@ public class VerifiedUser extends BaseUITest {
         loginPage.login(user);
     }
 
-    @Test
+    @Test(description = "2. Авторизация подтвержденным пользователем")
     public void verifiedUserTest() {
+        //Отображается домашняя страница
         assertEquals(headerPage.homePageTitle.getText(), "Домашняя страница");
-        assertEquals(headerPage.enteredAs.getText() + headerPage.activeUser.getText(),
-                headerPage.enteredAs.getText() + user.getLogin());
+
+        // Отображается "Вошли как <логин пользователя>"
+        assertEquals(headerPage.enteredAs.getText(), "Вошли как " + user.getLogin());
+
+        //3. В заголовке страницы отображаются элементы: "Домашняя страница", "Моя страница", "Проекты", "Помощь",
+        // "Моя учётная запись", "Выйти"
         assertEquals(headerPage.homePage.getText(), "Домашняя страница");
         assertEquals(headerPage.myPage.getText(), "Моя страница");
         assertEquals(headerPage.projects.getText(), "Проекты");
         assertEquals(headerPage.help.getText(), "Помощь");
         assertEquals(headerPage.myAccount.getText(), "Моя учётная запись");
         assertEquals(headerPage.logOut.getText(), "Выйти");
+
+        //4. В заголовке страницы не отображаются элементы "Администрирование", "Войти", "Регистрация"
+        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(headerPage.administration));
         assertFalse(BrowserUtils.isElementCurrentlyDisplayed(headerPage.loginButton));
         assertFalse(BrowserUtils.isElementCurrentlyDisplayed(headerPage.registerButton));
-        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(headerPage.administration));
+
+       // 5. Отображается элемент "Поиск"
         assertTrue(headerPage.quickSearch.isDisplayed());
 
     }
