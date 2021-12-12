@@ -12,7 +12,7 @@ import static org.testng.Assert.assertEquals;
 
 public class CreateUser extends BaseUITest {
 
-    @BeforeMethod
+    @BeforeMethod(description = "Заведен пользователь в системе с правами администратора")
     public void prepareFixtures() {
 
         User admin = new User() {{
@@ -22,30 +22,50 @@ public class CreateUser extends BaseUITest {
 
         openBrowser();
         headerPage.loginButton.click();
-        loginPage.login(admin);
+        loginPage.login(admin); //1
     }
 
-    @Test
+    /*
+
+
+    3. Нажать "Новый пользователь"
+    4. Заполнить поля "Пользователь", "Имя", "Фамилия", "Email" корректными значениями
+    5. Установить чекбокс "Создание пароля"
+    6. Нажать кнопку Создать
+     */
+    @Test(description = "8. Администрирование. Создание пользователя.")
     public void createUserTest() {
 
-        assertEquals(headerPage.homePage.getText(), "Домашняя страница");
+        assertEquals(headerPage.homePage.getText(), "Домашняя страница", "1. Отображается домашняя страница");
+
+        // 2. На главной странице нажать "Администрирование"
         headerPage.administration.click();
         assertEquals(administrationPage.administrationTitle.getText(), "Администрирование");
+
+        //3. Нажать "Новый пользователь"
         administrationPage.users.click();
         assertEquals(userTablePage.addUserButton.getText(), "Новый пользователь");
-        userTablePage.addUserButton.click();
-        assertEquals(newUsersPage.newUsersTitle.getText(), "Пользователи » Новый пользователь");
 
+        //3. Нажать "Новый пользователь"
+        userTablePage.addUserButton.click();
+        assertEquals(newUsersPage.newUsersTitle.getText(), "Пользователи » Новый пользователь", "Отображается страница \"Пользователи >> Новый пользователь\"");
+
+        //4. Заполнить поля "Пользователь", "Имя", "Фамилия", "Email" корректными значениями
         newUsersPage.inputUserLogin.sendKeys("Mixa" + StringUtils.randomString("qazwsxedcedcrfvtgbyhnujmiklop", 3));
         String login = newUsersPage.inputUserLogin.getAttribute("value");
         newUsersPage.inputFirstName.sendKeys("Mixail" + StringUtils.randomString("qazwsxedcedcrfvtgbyhnujmiklop", 3));
         newUsersPage.inputLastName.sendKeys("Kuznetsov" + StringUtils.randomString("qazwsxedcedcrfvtgbyhnujmiklop", 3));
         newUsersPage.inputEmail.sendKeys(StringUtils.randomEmail());
+
+        //5. Установить чекбокс "Создание пароля"
         newUsersPage.checkBoxGeneratePass.click();
+
+        //6. Нажать кнопку Создать
         newUsersPage.createButton.click();
+        assertEquals(newUsersPage.userWillBeCreated.getText(), "Пользователь " + login + " создан.");
 
+        //запрос в БД для проверки логина
         User user = new UserRequests().read(login);
-
         assertEquals(user.getLogin(), login);
 
     }

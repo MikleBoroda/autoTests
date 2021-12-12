@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
-public class NewUsersPage extends Page{
+public class NewUsersPage extends Page {
 
     @FindBy(xpath = "//div[@id='content']/h2[contains(a,'Пользователи') and text()=' » Новый пользователь']")
     public WebElement newUsersTitle;// Описание формы страницы "Пользователи"
@@ -29,6 +29,8 @@ public class NewUsersPage extends Page{
     @FindBy(xpath = "//div[@id='content']//form[@class='new_user']/p/input[@value ='Создать']")
     public WebElement createButton;
 
+    @FindBy(xpath = "//div[@id='flash_notice']")
+    public WebElement userWillBeCreated;
 
 
 }
