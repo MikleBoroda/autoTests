@@ -22,7 +22,7 @@ import java.util.Collections;
 
 import static org.testng.Assert.*;
 
-public class TestCRUD {
+public class CrudSystemTest {
     private RestApiClient client;
     private UserInfoDto body;
 
