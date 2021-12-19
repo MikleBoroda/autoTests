@@ -101,10 +101,14 @@ public class UserRequests implements Create<User>, Delete, Update<User>, Read<Us
         String query = "SELECT * FROM public.users WHERE id=?;\n";
         List<Map<String, Object>> result = PostgresConnection.INSTANCE.executeQuery(query, id);
         User user = new User();
-        user.setId((Integer) result.get(0).get("id"));
-        user.setStatus(Status.getIntStatus((Integer) result.get(0).get("status")));
 
-        return user;
+        if (result.size() != 0) {
+
+            user.setId((Integer) result.get(0).get("id"));
+            user.setStatus(Status.getIntStatus((Integer) result.get(0).get("status")));
+            return user;
+        }
+        return null;
     }
 
     public User read(String login) {
@@ -117,7 +121,6 @@ public class UserRequests implements Create<User>, Delete, Update<User>, Read<Us
 
 
     }
-
 
 
 }
