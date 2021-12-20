@@ -1,12 +1,11 @@
 package ui_test;
 
 
-import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.model.user.User;
-import redmine.ui.BrowserManager;
 import redmine.ui.BrowserUtils;
+import ui_redmine.BaseUITest;
 
 
 import java.util.List;

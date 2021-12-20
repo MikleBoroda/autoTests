@@ -1,5 +1,7 @@
 package redmine.db.connection;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 
 import java.sql.Connection;
@@ -47,6 +49,7 @@ public class PostgresConnection implements DatabaseConnection {
 
     @Override
     @SneakyThrows
+    @Step("Выполнение SQL запроса")
     public List<Map<String, Object>> executeQuery(String query, Object... parameters) {
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
@@ -56,6 +59,7 @@ public class PostgresConnection implements DatabaseConnection {
 
             }
 
+            Allure.addAttachment("SQL-запрос", stmt.toString()); // логирование SQL запроса
             ResultSet rs = stmt.executeQuery(); // Метод executeQuery используется в запросах,
             // результатом которых является один единственный набор значений, таких как запросов типа SELECT.
 
@@ -72,6 +76,7 @@ public class PostgresConnection implements DatabaseConnection {
                 }
                 result.add(oneLineResult);
             }
+            Allure.addAttachment("SQL-ответ", result.toString()); // логирование SQL ответа
             return result;
 
         } catch (PSQLException exception) {

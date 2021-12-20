@@ -1,5 +1,6 @@
 package redmine.model.user;
 
+import io.qameta.allure.Step;
 import lombok.*;
 import lombok.experimental.Accessors;
 import redmine.db.reaquests.UserRequests;
@@ -54,6 +55,7 @@ public class User extends CreatableEntity implements Creatable<Entity> {
     }
 
     @Override
+    @Step("Создан пользователь в БД")
     public User create() {
         new UserRequests().create(this);
         tokens.forEach(t -> t.setUserid(id));

@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import redmine.model.user.Status;
 import redmine.model.user.User;
 import redmine.ui.BrowserUtils;
-import ui_test.BaseUITest;
 
 import java.util.List;
 

@@ -1,18 +1,20 @@
 package ui_test;
 
 import lombok.SneakyThrows;
-import org.testng.Assert;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.model.user.User;
+import ui_redmine.BaseUITest;
 
+import static redmine.allure.asserts.AllureAssert.*;
 
 
 public class AdminLoginTest extends BaseUITest {
 
     private User user;
 
-    @BeforeMethod
+    @BeforeMethod(description = "В системе заведен пользователь с правами администратора. Открыт браузер на главной странице")
     public void prepareFixtures() {
         user = new User() {{
             setIsAdmin(true);
@@ -21,7 +23,7 @@ public class AdminLoginTest extends BaseUITest {
 
     }
 
-    @Test
+    @Test(description = "Вход администратором, проверка наличия элемента моя учетная запись")
     @SneakyThrows
     public void loginAsAdminTest() {
 
@@ -53,10 +55,10 @@ public class AdminLoginTest extends BaseUITest {
         headerPage.loginButton.click();
         loginPage.login(user);
         String myAccountText = headerPage.myAccount.getText();
-        Assert.assertEquals(myAccountText, "Моя учётная запись");
+        assertEquals(myAccountText, "Моя учётная запись", "проверка отображения элемента \"Моя учетная запись\"");
 
 
-      //  browser.getDriver().quit();
+        //  browser.getDriver().quit();
 
     }
 

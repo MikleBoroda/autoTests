@@ -6,7 +6,6 @@ import redmine.db.reaquests.UserRequests;
 import redmine.model.user.Status;
 import redmine.model.user.User;
 import redmine.utils.StringUtils;
-import ui_test.BaseUITest;
 
 import static org.testng.Assert.assertEquals;
 

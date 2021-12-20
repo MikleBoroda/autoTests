@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import redmine.model.project.Project;
 import redmine.model.user.User;
 import redmine.ui.BrowserUtils;
-import ui_test.BaseUITest;
 
 import static org.testng.Assert.assertEquals;
 

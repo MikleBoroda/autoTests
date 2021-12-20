@@ -1,6 +1,3 @@
-package testcases_api;
-
-
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.api.client.RestApiClient;

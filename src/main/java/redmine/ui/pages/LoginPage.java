@@ -1,5 +1,6 @@
 package redmine.ui.pages;
 
+import io.qameta.allure.Step;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,7 @@ public class LoginPage extends Page {
     private WebElement signInButton;
 
 
+    @Step("Вход в систему пользователем с логином {0} и паролем {1}")
     public void login(String login, String password) {
         userNameInput.sendKeys(login);
         passwordInput.sendKeys(password);

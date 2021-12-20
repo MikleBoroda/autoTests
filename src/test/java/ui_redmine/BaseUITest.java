@@ -1,5 +1,6 @@
-package ui_test;
+package ui_redmine;
 
+import io.qameta.allure.Step;
 import org.testng.annotations.AfterMethod;
 import redmine.ui.Browser;
 import redmine.ui.BrowserManager;
@@ -18,6 +19,7 @@ public class BaseUITest {
     protected NewUsersPage newUsersPage;
 
 
+    @Step("открываю браузер на главное странице")
     protected void openBrowser() {
         browser = BrowserManager.getBrowser();
         headerPage = getPage(HeaderPage.class);
@@ -30,8 +32,9 @@ public class BaseUITest {
 
     }
 
-    @AfterMethod
+    @AfterMethod(description = "закрытие браузера")
     public void tearDown() {
+        browser.takeScreenshot();
         BrowserManager.removeBrowser();
     }
 

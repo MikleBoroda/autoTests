@@ -1,5 +1,7 @@
 package redmine.ui;
 
+
+import io.qameta.allure.Attachment;
 import lombok.Getter;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -15,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class Browser {
     private WebDriver driver;
     private WebDriverWait wait;
+
 
     Browser() {
         this("");
@@ -39,6 +42,7 @@ public class Browser {
         getDriver().get(Property.getStringProperty("url") + uri);
     }
 
+    @Attachment("Скриншот браузера")
     public byte[] takeScreenshot() {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }

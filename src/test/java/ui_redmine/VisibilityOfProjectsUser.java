@@ -7,7 +7,6 @@ import redmine.model.role.Permissions;
 import redmine.model.role.Role;
 import redmine.model.user.User;
 import redmine.ui.BrowserUtils;
-import ui_test.BaseUITest;
 
 import java.util.Collections;
 import java.util.List;
