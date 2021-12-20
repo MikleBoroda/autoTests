@@ -1,10 +1,7 @@
 package redmine.utils;
 
-import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
-import org.testng.Assert;
 import redmine.allure.asserts.AllureAssert;
-
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
