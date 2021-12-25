@@ -11,7 +11,8 @@ import redmine.ui.BrowserUtils;
 import java.util.Collections;
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static redmine.allure.asserts.AllureAssert.*;
+import static redmine.allure.asserts.AllureAssert.click;
 
 
 public class VisibilityOfProjectsUser extends BaseUITest {
@@ -57,32 +58,28 @@ public class VisibilityOfProjectsUser extends BaseUITest {
         project3.addUserAndRoles(userNotAdmin, Collections.singletonList(role));
         project3.create();
 
-
         openBrowser();
-        headerPage.loginButton.click();
-        loginPage.login(userNotAdmin);
+
     }
 
-    @Test(description = "5. Видимость проектов. Пользователь")
+    @Test(description = "Видимость проектов. Пользователь")
     public void VisibilityOfProjectsTest() {
 
-        // Отображается домашняя страница
+        click(headerPage.loginButton, "\"Войти\"");
+        loginPage.login(userNotAdmin);
         assertEquals(headerPage.homePage.getText(), "Домашняя страница");
 
-        //На главной странице нажать "Проекты"
-        headerPage.projects.click();
-
-        //Отображается страница "Проекты"
+        click(headerPage.projects,"Проекты");
         assertEquals(projectsPage.projectsTitle.getText(), "Проекты");
 
         //Отображается проект из п.4 предусловия
-        assertTrue(BrowserUtils.isElementCurrentlyDisplayed(project1.getName()));
+        assertTrue(BrowserUtils.isElementCurrentlyDisplayed(project1.getName()),project1.getName());
 
         //Не отображается проект из п.5 предусловия
-        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(project2.getName()));
+        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(project2.getName()),project2.getName());
 
         // Отображается проект из п.6 предусловия
-        assertTrue(BrowserUtils.isElementCurrentlyDisplayed(project3.getName()));
+        assertTrue(BrowserUtils.isElementCurrentlyDisplayed(project3.getName()),project3.getName());
 
     }
 }

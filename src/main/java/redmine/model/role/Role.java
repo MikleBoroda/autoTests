@@ -1,6 +1,7 @@
 package redmine.model.role;
 
 
+import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -35,6 +36,7 @@ public class Role extends Entity implements Creatable<Role> {
 
 
     @Override
+    @Step("Создана роль с правами в БД")
     public Role create() {
         new RoleRequests().create(this);
         return this;

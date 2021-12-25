@@ -88,7 +88,7 @@ public class CompareUtils {
         AllureAssert.assertEquals(lastName, sortedLastName);
     }
 
-    @Step("Проверка сортировки списка")
+
     public static Boolean checkSortedList(List<String> list) {
         List<String> listSorted = new ArrayList<>(list);
         Collections.sort(listSorted);

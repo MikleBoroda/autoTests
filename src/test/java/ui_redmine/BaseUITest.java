@@ -19,7 +19,7 @@ public class BaseUITest {
     protected NewUsersPage newUsersPage;
 
 
-    @Step("открываю браузер на главное странице")
+    @Step("открываю браузер на главной странице")
     protected void openBrowser() {
         browser = BrowserManager.getBrowser();
         headerPage = getPage(HeaderPage.class);

@@ -1,5 +1,6 @@
 package redmine.model.project;
 
+import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,12 +41,14 @@ public class Project extends CreatableEntity implements Creatable<Project> {
     private Map<User, List<Role>> members = new HashMap<>();
 
 
+    @Step("Добавлена Роль пользователю")
     public void addUserAndRoles(User user, List<Role> roles) {
         members.put(user, roles);
     }
 
 
     @Override
+    @Step("Создан проект в БД")
     public Project create() {
         new ProjectRequests().create(this);
         for (User user : members.keySet()) {

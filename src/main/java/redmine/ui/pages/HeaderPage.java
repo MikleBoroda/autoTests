@@ -12,7 +12,7 @@ public class HeaderPage extends Page {
     @FindBy(xpath = "//div[@id='content']/h2")
     public WebElement homePageTitle; //Домашняя страница
 
-   // @FindBy(xpath = "//div[@id='top-menu']//div[@id ='loggedas']")
+    // @FindBy(xpath = "//div[@id='top-menu']//div[@id ='loggedas']")
     @FindBy(xpath = "//div[@id ='loggedas']")
     public WebElement enteredAs; //Войти как
 
@@ -49,6 +49,9 @@ public class HeaderPage extends Page {
 
     @FindBy(xpath = "//div[@id='quick-search']//input[@id='q']")
     public WebElement quickSearch; //поле поиска
+
+    @FindBy(xpath = "//div[@id='content']//div[@id='flash_error']")
+    public WebElement flashError;
 
 
 }

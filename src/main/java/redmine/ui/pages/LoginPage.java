@@ -21,6 +21,8 @@ public class LoginPage extends Page {
     private WebElement signInButton;
 
 
+
+
     @Step("Вход в систему пользователем с логином {0} и паролем {1}")
     public void login(String login, String password) {
         userNameInput.sendKeys(login);
@@ -28,6 +30,7 @@ public class LoginPage extends Page {
         signInButton.click();
 
     }
+
 
     public void login(User user) {
 

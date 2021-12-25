@@ -8,18 +8,19 @@ import redmine.ui.BrowserUtils;
 
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static redmine.allure.asserts.AllureAssert.*;
+import static redmine.allure.asserts.AllureAssert.click;
 import static redmine.utils.CompareUtils.*;
 
 public class SortingListOfUsersByUser extends BaseUITest {
-
+    private User admin;
 
     @BeforeMethod(description =
             "1. Заведен пользователь в системе с правами администратора\n" +
                     "2. Заведено несколько пользователей в системе")
     public void prepareFixtures() {
 
-        User admin = new User() {{
+        admin = new User() {{
             setIsAdmin(true);
         }}.create();
 
@@ -32,40 +33,29 @@ public class SortingListOfUsersByUser extends BaseUITest {
         }}.create();
 
         openBrowser();
-        headerPage.loginButton.click();
-        loginPage.login(admin);
+
 
     }
 
-    @Test(description = "6. Администрирование. Сортировка списка пользователей по пользователю")
+    @Test(description = "Администрирование. Сортировка списка пользователей по пользователю")
     public void sortingListOfUsersByUserTest() {
 
-        //Отображается домашняя страница
+        click(headerPage.loginButton, "\"Войти\"");
+        loginPage.login(admin);
         assertEquals(headerPage.homePage.getText(), "Домашняя страница");
 
-        //На главной странице нажать "Администрирование"
-        headerPage.administration.click();
-        //На главной странице нажать "Администрирование"
-        assertEquals(administrationPage.administrationTitle.getText(), "Администрирование");
+        click(headerPage.administration, "Администрирование");
+        assertEquals(administrationPage.administrationTitle.getText(), "Администрирование",
+                "Отображается страница \"Администрирование\"");
 
-        //Выбрать из списка меню "Пользователи"
-        administrationPage.users.click();
-        // Отображается таблица с пользователями
-        assertTrue(userTablePage.tableUsers.isDisplayed());
-
+        click(administrationPage.users,"\"Пользователи\"");
+        assertTrue(userTablePage.tableUsers.isDisplayed(),"таблица \"Пользователи\"");
 
         List<String> userNameAsc = BrowserUtils.getElementsText(userTablePage.userName);
-
-        // Таблица с пользователями отсортирована по логину пользователей по возрастанию
         assertListSortedByUserNameAsc(userNameAsc);
 
-        //В шапке таблицы нажать на "Пользователь"
-        userTablePage.button("Пользователь").click();
-
-
+        click(userTablePage.button("Пользователь"),"Пользователь");
         List<String> userNameDesc = BrowserUtils.getElementsText(userTablePage.userName);
-
-        //Таблица с пользователями отсортирована по логину пользователей по убыванию
         assertListSortedByUserNameDesc(userNameDesc);
 
     }

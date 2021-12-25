@@ -1,14 +1,13 @@
 package ui_redmine;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.model.user.Status;
 import redmine.model.user.User;
 import redmine.ui.BrowserUtils;
 
-import static org.testng.Assert.*;
+import static redmine.allure.asserts.AllureAssert.*;
+import static redmine.allure.asserts.AllureAssert.click;
 
 public class UnconfirmedUser extends BaseUITest {
     private User user;
@@ -29,23 +28,18 @@ public class UnconfirmedUser extends BaseUITest {
 
     @Test(description = "Авторизация неподтвержденным пользователем")
     public void unconfirmedUserTest() {
-        WebElement flashError = browser.getDriver().findElement(By.xpath("//div[@id='content']//div[@id='flash_error']"));
 
-        //1. Отображается домашняя страница
+        click(headerPage.loginButton, "\"Войти\"");
+        loginPage.login(user);
         assertEquals(headerPage.homePage.getText(), "Домашняя страница");
-
-        //Отображается ошибка с текстом "Ваша учётная запись создана и ожидает подтверждения администратора."
-        assertEquals(flashError.getText(), "Ваша учётная запись создана и ожидает подтверждения администратора.");
-
-        //В заголовке страницы не отображаются элементы "Моя страница"
-        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(headerPage.myPage));
+        assertEquals(headerPage.flashError.getText(), "Ваша учётная запись создана и ожидает подтверждения администратора.");
+        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(headerPage.myPage), "Моя страница");
 
         //В заголовке страницы отображаются элементы "Войти", "Регистрация"
-        assertTrue(headerPage.loginButton.isDisplayed());
-        assertTrue(headerPage.registerButton.isDisplayed());
+        assertTrue(headerPage.loginButton.isDisplayed(), "Войти");
+        assertTrue(headerPage.registerButton.isDisplayed(), "Регистрация");
 
 
     }
-
 
 }

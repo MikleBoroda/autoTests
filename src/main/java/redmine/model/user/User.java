@@ -46,6 +46,7 @@ public class User extends CreatableEntity implements Creatable<Entity> {
     private List<Email> emails = new ArrayList<>();
     private Map<Project, List<Role>> projectsMap = new HashMap<>();
 
+    @Step("Добавлен проект с правами")
     public void addProjectAndRoles(Project project, List<Role> roles) {
         projectsMap.put(project, roles);
     }

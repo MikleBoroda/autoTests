@@ -6,7 +6,8 @@ import redmine.model.user.Status;
 import redmine.model.user.User;
 import redmine.ui.BrowserUtils;
 
-import static org.testng.Assert.*;
+import static redmine.allure.asserts.AllureAssert.*;
+import static redmine.allure.asserts.AllureAssert.click;
 
 public class VerifiedUser extends BaseUITest {
     private User user;
@@ -20,16 +21,15 @@ public class VerifiedUser extends BaseUITest {
         }}.create();
 
         openBrowser();
-        headerPage.loginButton.click();
-        loginPage.login(user);
+
     }
 
-    @Test(description = "2. Авторизация подтвержденным пользователем")
+    @Test(description = "Авторизация подтвержденным пользователем")
     public void verifiedUserTest() {
-        //Отображается домашняя страница
-        assertEquals(headerPage.homePageTitle.getText(), "Домашняя страница");
 
-        // Отображается "Вошли как <логин пользователя>"
+        click(headerPage.loginButton, "\"Войти\"");
+        loginPage.login(user);
+        assertEquals(headerPage.homePageTitle.getText(), "Домашняя страница");
         assertEquals(headerPage.enteredAs.getText(), "Вошли как " + user.getLogin());
 
         //3. В заголовке страницы отображаются элементы: "Домашняя страница", "Моя страница", "Проекты", "Помощь",
@@ -42,12 +42,12 @@ public class VerifiedUser extends BaseUITest {
         assertEquals(headerPage.logOut.getText(), "Выйти");
 
         //4. В заголовке страницы не отображаются элементы "Администрирование", "Войти", "Регистрация"
-        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(headerPage.administration));
-        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(headerPage.loginButton));
-        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(headerPage.registerButton));
+        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(headerPage.administration),"Администрирование");
+        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(headerPage.loginButton),"Войти");
+        assertFalse(BrowserUtils.isElementCurrentlyDisplayed(headerPage.registerButton),"Регистрация");
 
        // 5. Отображается элемент "Поиск"
-        assertTrue(headerPage.quickSearch.isDisplayed());
+        assertTrue(headerPage.quickSearch.isDisplayed(),"Поиск");
 
     }
 

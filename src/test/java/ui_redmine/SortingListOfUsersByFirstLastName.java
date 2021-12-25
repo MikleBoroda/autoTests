@@ -8,18 +8,19 @@ import redmine.ui.BrowserUtils;
 
 import java.util.List;
 
-import static org.testng.Assert.*;
+
+import static redmine.allure.asserts.AllureAssert.*;
+import static redmine.allure.asserts.AllureAssert.click;
 import static redmine.utils.CompareUtils.*;
 
 public class SortingListOfUsersByFirstLastName extends BaseUITest {
+    private User admin;
 
-
-    @BeforeMethod(description =
-            "1. Заведен пользователь в системе с правами администратора\n" +
-                    "2. Заведено несколько пользователей в системе")
+    @BeforeMethod(description = "1. Заведен пользователь в системе с правами администратора\n" +
+            "2. Заведено несколько пользователей в системе")
     public void prepareFixtures() {
 
-        User admin = new User() {{
+        admin = new User() {{
             setIsAdmin(true);
         }}.create();
 
@@ -40,77 +41,54 @@ public class SortingListOfUsersByFirstLastName extends BaseUITest {
         }}.create();
 
         openBrowser();
-        headerPage.loginButton.click();
-        loginPage.login(admin);
 
     }
 
     @Test(description = " Администрирование. Сортировка списка пользователей по имени и фамилии")
     public void sortedListFirstLastNameTest() {
 
-        //Отображается домашняя страница
+        click(headerPage.loginButton, "\"Войти\"");
+        loginPage.login(admin);
         assertEquals(headerPage.homePage.getText(), "Домашняя страница");
 
-        // На главной странице нажать "Администрирование"
-        headerPage.administration.click();
-        // Отображается страница "Администрирование"
-        assertEquals(administrationPage.administrationTitle.getText(), "Администрирование");
+        click(headerPage.administration, "Администрирование");
+        assertEquals(administrationPage.administrationTitle.getText(),
+                "Администрирование",
+                "Отображается страница \"Администрирование\"");
 
-        //Выбрать из списка меню "Пользователи"
-        administrationPage.users.click();
-        //Отображается таблица с пользователями
-        assertTrue(userTablePage.tableUsers.isDisplayed());
+        click(administrationPage.users, "\"Пользователи\"");
+        assertTrue(userTablePage.tableUsers.isDisplayed(), "таблица \"Пользователи\"");
 
         List<String> firstNameAsc = BrowserUtils.getElementsText(userTablePage.firstName);
         List<String> lastNameAsc = BrowserUtils.getElementsText(userTablePage.lastName);
-        //Таблица с пользователями не отсортирована по имени
-        assertFalse(checkSortedList(firstNameAsc));
-        // Таблица с пользователями не отсортирована по фамилии
-        assertFalse(checkSortedList(lastNameAsc));
+        assertSortedFalse(checkSortedList(firstNameAsc), "Имя");
+        assertSortedFalse(checkSortedList(lastNameAsc), "Фамилия");
 
 
-        //В шапке таблицы нажать на "Фамилия"
-        userTablePage.button("Фамилия").click();
+        click(userTablePage.button("Фамилия"), "Фамилия");
         List<String> lastNameAsc2 = BrowserUtils.getElementsText(userTablePage.lastName);
         List<String> firstNameAsc2 = BrowserUtils.getElementsText(userTablePage.firstName);
-
-        //Таблица с пользователями отсортирована по фамилии по возрастанию (не учитывается регистр)
         assertListSortedByLastNameAsc(lastNameAsc2);
-        // Таблица с пользователями не отсортирована по имени
-        assertFalse(checkSortedList(firstNameAsc2));
+        assertSortedFalse(checkSortedList(firstNameAsc2), "Имя");
 
-        //В шапке таблицы нажать на "Фамилия"
-        userTablePage.button("Фамилия").click();
+
+        click(userTablePage.button("Фамилия"), "Фамилия");
         List<String> lastNameDesc = BrowserUtils.getElementsText(userTablePage.lastName);
         List<String> firstNameDes = BrowserUtils.getElementsText(userTablePage.firstName);
-
-        //Таблица с пользователями отсортирована по фамилии по убыванию (не учитывается регистр)
         assertListSortedByLastNameDesc(lastNameDesc);
-        //Таблица с пользователями не отсортирована по имени
-        assertFalse(checkSortedList(firstNameDes));
+        assertSortedFalse(checkSortedList(firstNameDes), "Имя");
 
-        //Таблица с пользователями не отсортирована по имени
-        userTablePage.button("Имя").click();
+        click(userTablePage.button("Имя"), "Имя");
         List<String> firstNameAsc3 = BrowserUtils.getElementsText(userTablePage.firstName);
         List<String> lastNameAsc3 = BrowserUtils.getElementsText(userTablePage.lastName);
-
-        //Таблица с пользователями отсортирована по имени по возрастанию (не учитывается регистр)
         assertListSortedByFirstNameAsc(firstNameAsc3);
-        //Таблица с пользователями не отсортирована по фамилии
-        assertFalse(checkSortedList(lastNameAsc3));
+        assertSortedFalse(checkSortedList(lastNameAsc3), "Фамилия");
 
-
-        //В шапке таблицы нажать на "Имя"
-        userTablePage.button("Имя").click();
-
+        click(userTablePage.button("Имя"), "Имя");
         List<String> firstNameDesc2 = BrowserUtils.getElementsText(userTablePage.firstName);
         List<String> lastNameDesc2 = BrowserUtils.getElementsText(userTablePage.lastName);
-
-        //Таблица с пользователями отсортирована по имени по убыванию (не учитывается регистр)
         assertListSortedByFirstNameDesc(firstNameDesc2);
-        //В шапке таблицы нажать на "Имя"
-        assertFalse(checkSortedList(lastNameDesc2));
-
+        assertSortedFalse(checkSortedList(lastNameDesc2), "Имя");
 
     }
 
