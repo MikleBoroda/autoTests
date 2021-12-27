@@ -1,6 +1,5 @@
 package redmine.allure.asserts;
 
-import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -16,29 +15,49 @@ public class AllureAssert {
         Assert.assertEquals(actual, expected);
     }
 
-    @Step("проверка отображения элемента: \"{1}\" есть на странице")
-    public static void assertTrue(boolean webElement, String text) {
-        Assert.assertTrue(webElement);
+    @Step("проверка истинности: {0}")
+    public static void assertTrue(boolean meaning, String message) {
+        Assert.assertTrue(meaning);
+    }
+
+    @Step("проверка истинности: {0}")
+    public static void assertTrue(boolean meaning) {
+        Assert.assertTrue(meaning);
     }
 
 
+    @Step("проверка истинности: {0}")
+    public static void assertFalse(boolean meaning, String description) {
+        Assert.assertFalse(meaning);
+    }
 
-    @Step("Проверка отсуствия элемента: \"{1}\" отсутствует на странице")
-    public static void assertFalse(boolean webElement, String description) {
-        Assert.assertFalse(webElement);
+    @Step("проверка истинности: {0}")
+    public static void assertFalse(boolean meaning) {
+        Assert.assertFalse(meaning);
+    }
+
+    @Step("проверка отсутсвия: {0}")
+    public static void assertNull(Object meaning, String message) {
+        Assert.assertNull(meaning);
+    }
+
+    @Step("проверка наличия объекта: {0}")
+    public static void assertNotNull(Object meaning, String message) {
+        Assert.assertNotNull(meaning);
     }
 
     @Step("Проверка сортировки списка по \"{1}\" - {0} список не отсортирован")
-    public static void assertSortedFalse(boolean webElement, String description){
+    public static void assertSortedFalse(boolean webElement, String description) {
         Assert.assertFalse(webElement);
     }
+
     @Step("Проверка сортировки списка по \"{1}\" - {0} список  отсортирован")
-    public static void assertSortedTrue(boolean webElement, String description){
+    public static void assertSortedTrue(boolean webElement, String description) {
         Assert.assertFalse(webElement);
     }
 
     @Step("Производится нажатие на WebElement \"{1}\"")
-    public static void click(WebElement webElement, String description){
+    public static void click(WebElement webElement, String description) {
         webElement.click();
     }
 

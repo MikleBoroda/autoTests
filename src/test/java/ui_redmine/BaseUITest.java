@@ -33,8 +33,8 @@ public class BaseUITest {
     }
 
     @AfterMethod(description = "закрытие браузера")
+    @Step("Закрытие браузера")
     public void tearDown() {
-        browser.takeScreenshot();
         BrowserManager.removeBrowser();
     }
 

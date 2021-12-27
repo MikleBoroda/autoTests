@@ -21,6 +21,7 @@ public class RestAssuredClient implements RestApiClient {
 
     protected RequestSpecification specification;
 
+
     public RestAssuredClient() {
         this.specification = given()
                 .baseUri(Property.getStringProperty("url"))
@@ -38,7 +39,7 @@ public class RestAssuredClient implements RestApiClient {
     }
 
     @Override
-    @Step("Выполнение АПИ запроса")
+    @Step("Выполнение API-запроса")
     public RestResponse execute(RestRequest request) {
         RequestSpecification spec = given(specification)
                 .queryParams(request.getQueryParameters())

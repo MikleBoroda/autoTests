@@ -21,6 +21,7 @@ public class BrowserManager {
     }
 
     public static void removeBrowser() {
+        browser.takeScreenshot();
         browser.getDriver().quit();
         browser = null;
     }

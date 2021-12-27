@@ -1,6 +1,6 @@
 package testcases_api;
 
-import org.testng.Assert;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import redmine.api.client.RestApiClient;
@@ -16,19 +16,17 @@ import redmine.model.user.User;
 
 import java.util.Collections;
 
+import static redmine.allure.asserts.AllureAssert.*;
+import static redmine.allure.asserts.AllureMethods.*;
+
 public class GetUserWithOutAdmin {
     private User firstUser;
     private User secondUser;
     private RestApiClient client;
     private RestRequest request;
 
-    /*
-    Предусловие:
-    1. Заведен пользователь в системе
-    2. У пользователя есть доступ к API и ключ API
-    3. Заведен еще один пользователь в системе
-     */
-    @BeforeMethod
+
+    @BeforeMethod(description = "Заведен пользователь в системе. У пользователя есть доступ к API и ключ API. Заведен еще один пользователь в системе")
     public void prepareFixtures() {
         firstUser = new User() {{
             setTokens(Collections.singletonList(new Token(this)));
@@ -36,34 +34,36 @@ public class GetUserWithOutAdmin {
 
         secondUser = new User().create();
 
-        client = new RestAssuredClient(firstUser);
+        client = createApiClient(new RestAssuredClient(firstUser));
 
 
     }
 
-    @Test
+    @Test(description = "Получение пользователей. Пользователь без прав администратора")
     public void getTwoUsers() {
         //Отправить запрос GET на получение пользователя из п.1, используя ключ API из п.2
-        request = new RestAssuredRequest(RestMethod.GET, "/users/" + firstUser.getId() + ".json", null, null, null);
+        request = shapingRequest(new RestAssuredRequest(RestMethod.GET, "/users/" + firstUser.getId() + ".json",
+                null, null, null));
         RestResponse response = client.execute(request);
-        Assert.assertEquals(response.getStatusCode(), 200);
+        assertEquals(response.getStatusCode(), 200, " Статус код ответа 200");
 
-        UserInfoDto responseFirstUser = response.getPayload(UserInfoDto.class);
+        UserInfoDto responseFirstUser = requestDto(response.getPayload(UserInfoDto.class));
 
-        Assert.assertFalse(responseFirstUser.getUser().getAdmin());
-        Assert.assertEquals(responseFirstUser.getUser().getApiKey(), firstUser.getTokens().get(0).getValue());
+        assertFalse(responseFirstUser.getUser().getAdmin(), "Присутсвует admin = false");
+        assertEquals(responseFirstUser.getUser().getApiKey(), firstUser.getTokens().get(0).getValue());
 
 
         //Отправить запрос GET на получения пользователя из п.3, используя ключ API из п.2
         // т к в client передается пользователь уже с доступом к api_key, в запросе просто указываем Id  второго пользователя
-        request = new RestAssuredRequest(RestMethod.GET, "/users/" + secondUser.getId() + ".json", null, null, null);
+        request = shapingRequest(new RestAssuredRequest(RestMethod.GET, "/users/" + secondUser.getId() + ".json",
+                null, null, null));
         response = client.execute(request);
-        Assert.assertEquals(response.getStatusCode(), 200);
+        assertEquals(response.getStatusCode(), 200, "Статус код ответа 200");
 
         UserInfoDto responseSecondUser = response.getPayload(UserInfoDto.class);
 
-        Assert.assertNull(responseSecondUser.getUser().getAdmin());
-        Assert.assertNull(responseSecondUser.getUser().getApiKey());
+        assertNull(responseSecondUser.getUser().getAdmin(), "поле \"admin\" в ответе не содержится");
+        assertNull(responseSecondUser.getUser().getApiKey(), "поле \"api_key\" в ответе не содержится");
 
     }
 }
