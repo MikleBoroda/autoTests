@@ -2,6 +2,8 @@ package redmine.model.user;
 
 import lombok.AllArgsConstructor;
 
+import java.util.stream.Stream;
+
 @AllArgsConstructor
 public enum MailNotification {
 
@@ -12,4 +14,11 @@ public enum MailNotification {
     NONE("Нет событий");
 
     private final String description;
+
+    public static MailNotification of(String description) {
+        return Stream.of(values())
+                .filter(mailNotification -> mailNotification.description.equals(description))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Не найдено MAilNotification по описанию " + description));
+    }
 }
