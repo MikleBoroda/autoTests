@@ -37,12 +37,12 @@ public class AllureAssert {
     }
 
     @Step("проверка отсутсвия: {0}")
-    public static void assertNull(Object meaning, String message) {
+    public static void assertNull(Object meaning) {
         Assert.assertNull(meaning);
     }
 
     @Step("проверка наличия объекта: {0}")
-    public static void assertNotNull(Object meaning, String message) {
+    public static void assertNotNull(Object meaning) {
         Assert.assertNotNull(meaning);
     }
 

@@ -4,9 +4,12 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import redmine.cucmber.ElementName;
+import redmine.cucmber.PageName;
 
 
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
+@PageName("Заголовок страницы")
 public class HeaderPage extends Page {
 
     @FindBy(xpath = "//div[@id='content']/h2")
@@ -28,6 +31,7 @@ public class HeaderPage extends Page {
     @FindBy(xpath = "//div[@id='top-menu']//a[contains(@class, 'projects')]")
     public WebElement projects; //Проекты
 
+    @ElementName("Администрирование")
     @FindBy(xpath = "//div[@id='top-menu']//a[@class='administration']")
     public WebElement administration; //Админстрирование
 
@@ -35,9 +39,11 @@ public class HeaderPage extends Page {
     public WebElement help; //Помощь
 
 
+    @ElementName("Войти")
     @FindBy(xpath = "//div[@id='account']//a[@class='login']")
     public WebElement loginButton; //войти
 
+    @ElementName("Моя учетная запись")
     @FindBy(xpath = "//div[@id='account']//a[@class='my-account']")
     public WebElement myAccount; // Моя учетная запись
 

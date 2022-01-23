@@ -1,15 +1,13 @@
 package steps;
 
-import cucmber.validators.UserParametersValidator;
+import redmine.cucmber.validators.UserParametersValidator;
 import cucumber.api.java.ru.Пусть;
 import io.cucumber.datatable.DataTable;
 import redmine.context.Context;
-import redmine.model.user.Email;
-import redmine.model.user.MailNotification;
-import redmine.model.user.Status;
-import redmine.model.user.User;
+import redmine.model.user.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -54,6 +52,9 @@ public class PrepareFeatureSteps {
             String emailStashId = parameters.get("E-Mail");
             List<Email> emails = Context.getStash().get(emailStashId, List.class);
             user.setEmails(emails);
+        }
+        if (parameters.containsKey("Api-ключ")) {
+            user.setTokens(Collections.singletonList(new Token(user)));
         }
         user.create();
 

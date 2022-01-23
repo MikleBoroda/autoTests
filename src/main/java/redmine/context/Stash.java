@@ -1,5 +1,7 @@
 package redmine.context;
 
+import redmine.api.client.RestApiClient;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,4 +20,6 @@ public class Stash {
     public <T> T get(String stashId, Class<T> clazz) {
         return (T) entities.get(stashId);
     }
+
+
 }
