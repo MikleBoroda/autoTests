@@ -4,15 +4,20 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import redmine.cucmber.ElementName;
+import redmine.cucmber.PageName;
 
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
+@PageName("Проекты")
 public class ProjectsPage extends Page {
 
-    @FindBy(xpath = "//div[@id='main-menu']//a[@class='projects']")
+    @ElementName("Проекты")
+    @FindBy(xpath = "//div[@id='main-menu']//a[text() ='Проекты']")
     public WebElement projectsSelect; //вкладка проекты
 
-    @FindBy(xpath = "//div[@id='content']//h2[text() ='Проекты']")
-    public WebElement projectsTitle;
+    @ElementName("Проекты")
+    @FindBy(xpath = "//div[@id='main']//h2[text() ='Проекты']")
+    public WebElement projectsTitle; //ЗАГОЛОВОК ПРОЕКТЫ
 
 
 }

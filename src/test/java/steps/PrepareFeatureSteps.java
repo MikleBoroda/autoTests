@@ -1,9 +1,11 @@
 package steps;
 
+import redmine.cucmber.validators.ProjectParametersValidator;
 import redmine.cucmber.validators.UserParametersValidator;
 import cucumber.api.java.ru.Пусть;
 import io.cucumber.datatable.DataTable;
 import redmine.context.Context;
+import redmine.model.project.Project;
 import redmine.model.user.*;
 
 import java.util.ArrayList;
@@ -60,5 +62,20 @@ public class PrepareFeatureSteps {
 
         Context.getStash().put(stashId, user);
     }
+
+    @Пусть("Существует проект {string} с параметрами")
+    public void createProject(String projectStash, Map<String, String> parameters) {
+        ProjectParametersValidator.validateProjectParameters(parameters.keySet());
+        Project project = new Project();
+        if (parameters.containsValue("false")) {
+            project.setIsPublic(false);
+            project.create();
+        }
+        project.create();
+
+        Context.getStash().put(projectStash, project);
+
+    }
+
 
 }

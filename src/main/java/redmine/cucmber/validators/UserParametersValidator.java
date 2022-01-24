@@ -7,7 +7,6 @@ import java.util.Set;
 public class UserParametersValidator {
 
     public static void validateUserParameters(Set<String> keys) {
-
         List<String> allowedKeys = Arrays.asList(
                 "Администратор",
                 "Статус",

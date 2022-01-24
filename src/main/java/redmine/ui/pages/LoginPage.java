@@ -32,9 +32,7 @@ public class LoginPage extends Page {
         userNameInput.sendKeys(login);
         passwordInput.sendKeys(password);
         signInButton.click();
-
     }
-
 
     public void login(User user) {
         login(user.getLogin(), user.getPassword());

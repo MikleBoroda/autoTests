@@ -25,7 +25,6 @@ public class AllureAssert {
         Assert.assertTrue(meaning);
     }
 
-
     @Step("проверка истинности: {0}")
     public static void assertFalse(boolean meaning, String description) {
         Assert.assertFalse(meaning);

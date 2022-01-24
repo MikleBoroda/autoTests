@@ -1,11 +1,10 @@
 package steps;
 
-import cucumber.api.java.ru.Если;
+
 import cucumber.api.java.ru.И;
 import redmine.context.Context;
 import redmine.model.user.User;
 import redmine.ui.pages.LoginPage;
-import redmine.ui.pages.Page;
 
 import static redmine.ui.pages.Page.getPage;
 
