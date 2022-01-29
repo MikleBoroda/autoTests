@@ -46,17 +46,17 @@ public class AllureAssert {
     }
 
     @Step("Проверка сортировки списка по \"{1}\" - {0} список не отсортирован")
-    public static void assertSortedFalse(boolean webElement, String description) {
+    public static void assertSortedFalse(boolean webElement) {
         Assert.assertFalse(webElement);
     }
 
     @Step("Проверка сортировки списка по \"{1}\" - {0} список  отсортирован")
-    public static void assertSortedTrue(boolean webElement, String description) {
+    public static void assertSortedTrue(boolean webElement) {
         Assert.assertFalse(webElement);
     }
 
     @Step("Производится нажатие на WebElement \"{1}\"")
-    public static void click(WebElement webElement, String description) {
+    public static void click(WebElement webElement) {
         webElement.click();
     }
 

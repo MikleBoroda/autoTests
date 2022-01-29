@@ -29,7 +29,7 @@ public class Project extends CreatableEntity implements Creatable<Project> {
     private String name = "Kuznetsov" + randomHexString(10);
     private String description = "DescriptionProject" + randomHexString(10);
     private String homepage = "Kuznetsov" + randomHexString(10);
-    private Boolean isPublic = false;
+    private Boolean isPublic = true;
     private Integer parentId;
     private String identifier = randomHexString(12);
     private Status status = OPENED;

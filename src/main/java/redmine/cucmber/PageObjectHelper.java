@@ -13,11 +13,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public class PageObjectHelper {
-    /**
-     * @param pageName
-     * @param elementName
-     * @return
-     */
+
     public static WebElement findElement(String pageName, String elementName) {
         return getElement(getPage(pageName), elementName);
 

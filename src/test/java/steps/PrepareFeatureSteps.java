@@ -1,17 +1,20 @@
 package steps;
 
 import redmine.cucmber.validators.ProjectParametersValidator;
+import redmine.cucmber.validators.RoleParametersValidator;
 import redmine.cucmber.validators.UserParametersValidator;
 import cucumber.api.java.ru.Пусть;
 import io.cucumber.datatable.DataTable;
 import redmine.context.Context;
 import redmine.model.project.Project;
+import redmine.model.role.Permissions;
+import redmine.model.role.Role;
 import redmine.model.user.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+
+import static java.util.stream.Collectors.toList;
 
 public class PrepareFeatureSteps {
 
@@ -66,16 +69,45 @@ public class PrepareFeatureSteps {
     @Пусть("Существует проект {string} с параметрами")
     public void createProject(String projectStash, Map<String, String> parameters) {
         ProjectParametersValidator.validateProjectParameters(parameters.keySet());
-        Project project = new Project();
+        Project project;
         if (parameters.containsValue("false")) {
-            project.setIsPublic(false);
-            project.create();
+            project = new Project() {{
+                setIsPublic(false);
+            }}.create();
+        } else {
+            project = new Project().create();
         }
-        project.create();
-
         Context.getStash().put(projectStash, project);
-
     }
 
+    @Пусть("В системе существует роль {string} с правами:")
+    public void createRole(String roleStash, List<String> permissions) {
+        RoleParametersValidator.validateRoleParameters(permissions);
+        Role role = new Role();
+        role.setPermissionsList(
+                permissions.stream().map(description -> Permissions.off(description)).collect(toList())
+        );
+        role.create();
+        Context.getStash().put(roleStash, role);
+    }
 
+    //Создаем список ролей для того чтобы потом связать с пользователем
+    @Пусть("Список ролей {string} содержит роли:")
+    public void createRoleList(String roleStash, List<String> roleListStashId) {
+        List<Role> roles = new ArrayList<>();
+        for (String roleListStashIds : roleListStashId) {
+            Role role = Context.getStash().get(roleListStashIds, Role.class);
+            roles.add(role);
+        }
+        Context.getStash().put(roleStash, roles);
+    }
+
+    @Пусть("Пользователь {string} имеет доступ к проекту {string} со списком ролей {string}")
+    public void userHaveProject(String userStash, String projectStash, String roleStash) {
+        List<Role> roles = Context.getStash().get(roleStash, List.class);
+        Project project = Context.getStash().get(projectStash, Project.class);
+        User user = Context.getStash().get(userStash, User.class);
+
+        user.addProjectAndRoles(project, roles);
+    }
 }

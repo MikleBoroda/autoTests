@@ -32,14 +32,14 @@ public class ApiSteps {
             setStatus(Status.UNACCEPTED);
         }};
         UserInfoDto body = getUserInfoDto(user);
-        RestRequest request = shapingRequest(
+        RestRequest request =
                 new RestAssuredRequest(
                         RestMethod.POST,
                         endPoint,
                         null,
                         null,
                         GsonProvider.GSON.toJson(body)
-                ));
+                );
         RestApiClient apiClient = Context.getStash().get(clientId, RestApiClient.class);
         RestResponse response = apiClient.execute(request);
 
@@ -69,14 +69,14 @@ public class ApiSteps {
         body.getUser().setMail("Sdet.ru");
         body.getUser().setPassword("weqr");
 
-        RestRequest request = shapingRequest(
+        RestRequest request =
                 new RestAssuredRequest(
                         RestMethod.POST,
                         " /users.json",
                         null,
                         null,
                         GsonProvider.GSON.toJson(body)
-                ));
+                );
         RestApiClient apiClient = Context.getStash().get(apiClientStash, RestApiClient.class);
         RestResponse response = apiClient.execute(request);
 
@@ -89,14 +89,14 @@ public class ApiSteps {
         RestResponse response = Context.getStash().get(responseStash, RestResponse.class);
         UserInfoDto body = response.getPayload(UserInfoDto.class);
         body.getUser().setStatus(statusCode);
-        RestRequest request = shapingRequest(
+        RestRequest request =
                 new RestAssuredRequest(
                         RestMethod.PUT,
                         String.format(endPoint, body.getUser().getId()),
                         null,
                         null,
                         GsonProvider.GSON.toJson(body)
-                ));
+                );
         RestApiClient apiClient = Context.getStash().get(apicClientStash, RestApiClient.class);
         response = apiClient.execute(request);
         Context.getStash().put(responseCheck, response);
@@ -106,14 +106,14 @@ public class ApiSteps {
             " получить ответ = {string}")
     public void sendRequestGet(String apiClientStash, String userStash, String endPoint, String responseCheck) {
         User user = Context.getStash().get(userStash, User.class);
-        RestRequest request = shapingRequest(
+        RestRequest request =
                 new RestAssuredRequest(
                         RestMethod.GET,
                         String.format(endPoint, user.getId()),
                         null,
                         null,
                         null
-                ));
+                );
         RestApiClient apiClient = Context.getStash().get(apiClientStash, RestApiClient.class);
         RestResponse response = apiClient.execute(request);
         Context.getStash().put(responseCheck, response);
@@ -122,7 +122,7 @@ public class ApiSteps {
     @Затем("Отправить запрос DELETE через api-client {string} на удаление  пользователя {string} на эндпоинт {string}, получить ответ = {string}")
     public void sendRequestDelete(String apiClientStash, String userStash, String endPoint, String responseCheck) {
         User user = Context.getStash().get(userStash, User.class);
-        RestRequest request = shapingRequest(new RestAssuredRequest(RestMethod.DELETE, String.format(endPoint, user.getId()), null, null, null));
+        RestRequest request = new RestAssuredRequest(RestMethod.DELETE, String.format(endPoint, user.getId()), null, null, null);
         RestApiClient apiClient = Context.getStash().get(apiClientStash, RestApiClient.class);
         RestResponse response = apiClient.execute(request);
         Context.getStash().put(responseCheck, response);

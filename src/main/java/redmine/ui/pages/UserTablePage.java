@@ -24,18 +24,23 @@ public class UserTablePage extends Page {
     @FindBy(xpath = "//th[@title='Сортировать по \"Создано\"']/a")
     public WebElement creationDateButton;
 
+    @ElementName("Пользователь")
     @FindBy(xpath = "//table[@class='list users']/tbody//td[@class='username']")
     public List<WebElement> userName; //логин пользователей
 
+    @ElementName("Имя")
     @FindBy(xpath = "//table[@class='list users']/tbody//td[@class='firstname']")
     public List<WebElement> firstName; //имя пользователя
 
+    @ElementName("Фамилия")
     @FindBy(xpath = "//table[@class='list users']/tbody//td[@class='lastname']")
     public List<WebElement> lastName; // фамилия пользователя
 
+    @ElementName("Таблица Пользователи")
     @FindBy(xpath = "//div[@id='content']//table[@class='list users']")
     public WebElement tableUsers; // таблица пользователей
 
+    @ElementName("Новый пользователь")
     @FindBy(xpath = "//div[@id='content']//a[@class='icon icon-add']")
     public WebElement addUserButton;
 

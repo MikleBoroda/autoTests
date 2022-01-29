@@ -3,6 +3,7 @@ package redmine.model.user;
 import io.qameta.allure.Step;
 import lombok.*;
 import lombok.experimental.Accessors;
+import redmine.db.reaquests.AddToMembersRequests;
 import redmine.db.reaquests.UserRequests;
 import redmine.model.Creatable;
 import redmine.model.CreatableEntity;
@@ -49,7 +50,10 @@ public class User extends CreatableEntity implements Creatable<Entity> {
     @Step("Добавлен проект с правами")
     public void addProjectAndRoles(Project project, List<Role> roles) {
         projectsMap.put(project, roles);
+        Integer memberId = new AddToMembersRequests().addMember(this.id, project.getId());
+        roles.forEach(role -> new AddToMembersRequests().addMemberRole(memberId, role.getId()));
     }
+
 
     public String getHashedPassword() {
         return sha1Hex(salt + sha1Hex(password));

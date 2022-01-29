@@ -95,5 +95,15 @@ public class CompareUtils {
         return listSorted.equals(list);
     }
 
+    public static Comparator<String> getComparator(String comparatorType) {
+        switch (comparatorType) {
+            case ("По возрастанию"):
+                return USER_ASC_COMPARATOR;
+            case ("По убыванию"):
+                return USER_DESC_COMPARATOR;
+        }
+        throw new IllegalArgumentException("Такой сортировки не существует");
+    }
+
 
 }

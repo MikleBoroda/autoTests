@@ -19,6 +19,7 @@ public class AdministrationPage extends Page {
     @FindBy(xpath = "//div[@id='admin-menu']//a[contains(@class,'users')]")
     public WebElement users;
 
+    @ElementName("Администрирование")
     @FindBy(xpath = "//div[@id='content']//h2[text()='Администрирование']")
     public WebElement administrationTitle;
 

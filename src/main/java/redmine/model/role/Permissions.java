@@ -4,6 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
+
 @AllArgsConstructor
 @Getter
 public enum Permissions {
@@ -77,4 +82,13 @@ public enum Permissions {
 
     public final String description;
 
+    public static Permissions off(String description1) {
+        List<Permissions> permissions = Arrays.asList(Permissions.values());
+        for (Permissions permission : permissions) {
+            if (permission.description.equals(description1)) {
+                return permission;
+            }
+        }
+        return null;
+    }
 }

@@ -5,15 +5,14 @@ import java.util.List;
 import java.util.Set;
 
 public class RoleParametersValidator {
-    public static void validateRoleParameters(Set<String> keys) {
+    public static void validateRoleParameters(List<String> permissions) {
         List<String> allowedKeys = Arrays.asList(
                 "Просмотр задач"
         );
 
-        boolean allKeysValid = keys.stream().allMatch(key -> allowedKeys.contains(key));
-        if (!allKeysValid) {
+        boolean allValuesValid = allowedKeys.containsAll(permissions);
+        if (!allValuesValid) {
             throw new IllegalArgumentException("Среди переданных параметров роли есть некорректные параметры");
         }
-
     }
 }

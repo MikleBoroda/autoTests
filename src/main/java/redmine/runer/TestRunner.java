@@ -18,11 +18,10 @@ import java.lang.reflect.Method;
                 "json:target/cucumber.json"
         },
         glue = {"steps"},
-        features = "src/test/resources/features",
-       tags = {"@api"}
+        features = "src/test/resources/features/",
+        tags = {"@ui,@api"}
 )
 public class TestRunner extends AbstractTestNGCucumberTests implements ITest {
-
     @BeforeClass(alwaysRun = true)
     @Override
     public void setUpClass() throws Exception {
@@ -54,13 +53,12 @@ public class TestRunner extends AbstractTestNGCucumberTests implements ITest {
 
     @BeforeMethod
     public void beforeMethod(Method name, Object[] testData) {
-
     }
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod(Method name, Object[] testData) {
         Context.clearStash();
-        BrowserManager.removeBrowser();
+        BrowserManager.closeBrowser();
     }
 }
 
