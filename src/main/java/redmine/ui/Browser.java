@@ -18,7 +18,6 @@ public class Browser {
     private WebDriver driver;
     private WebDriverWait wait;
 
-
     Browser() {
         this("");
     }

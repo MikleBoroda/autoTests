@@ -25,7 +25,6 @@ public class GsonProvider {
 
         @Override
         public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
-            // return new JsonPrimitive(src.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
             return new JsonPrimitive(src.format(DateTimeFormatter.ISO_DATE_TIME));
         }
     }

@@ -24,7 +24,6 @@ import java.util.Collections;
 import static redmine.allure.asserts.AllureMethods.*;
 
 public class ApiSteps {
-
     @Тогда("Отправить {string} запрос через {string} на эндпоинт {string} для создания пользователя в БД и получить {string}")
     public void sendRequestPost(String requestType, String clientId, String endPoint, String responseId) {
         User user = new User() {{
@@ -187,7 +186,6 @@ public class ApiSteps {
         AllureAssert.assertNull(responseUser.getUser().getAdmin());
         AllureAssert.assertNull(responseUser.getUser().getApiKey());
     }
-
 
     private UserInfoDto getUserInfoDto(User user) {
 

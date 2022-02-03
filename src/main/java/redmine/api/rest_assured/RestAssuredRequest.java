@@ -1,8 +1,6 @@
 package redmine.api.rest_assured;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import lombok.Getter;
-
 import lombok.NonNull;
 import redmine.api.client.RestMethod;
 import redmine.api.client.RestRequest;

@@ -34,7 +34,5 @@ public class EmailRequests implements Create<Email> {
 
         Integer emailId = (Integer) result.get(0).get("id"); //в первом столбце в первой строке получим Id
         email.setId(emailId);//емейлу присваиваем  Id
-
-
     }
 }

@@ -6,10 +6,8 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 public class Property {
-
     private static String propertiesName = "default.properties";
     private static Properties properties = new Properties();
-
     private static boolean isInitialized = false;
 
     @SneakyThrows
@@ -21,7 +19,6 @@ public class Property {
     public static String getStringProperty(String key) {
         if (!isInitialized) init();
         return properties.getProperty(key);
-
     }
 
     public static Integer getIntegerProperty(String key) {
@@ -30,6 +27,5 @@ public class Property {
 
     public static Boolean getBooleanProperty(String key) {
         return Boolean.parseBoolean(getStringProperty(key));
-
     }
 }

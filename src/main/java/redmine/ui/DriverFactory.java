@@ -14,14 +14,12 @@ import java.net.URL;
 import java.util.Map;
 
 public class DriverFactory {
-
     private static final String BROWSER_NAME = Property.getStringProperty("browser");
     private static final Boolean IS_REMOTE = Property.getBooleanProperty("remote");
     private static final String BROWSER_VERSION = Property.getStringProperty("browser.version");
     private static final Boolean ENABLE_VNC = Property.getBooleanProperty("enable.vnc");
     private static final Boolean ENABLE_VIDEO = Property.getBooleanProperty("enable.video");
     private static final String SELENOID_HUB_URL = Property.getStringProperty("selenoid.hub.url");
-
 
     @SneakyThrows
     static WebDriver getDriver() {
@@ -40,7 +38,6 @@ public class DriverFactory {
                     new URL(SELENOID_HUB_URL),
                     capabilities
             );
-
 
         } else {
             switch (BROWSER_NAME) {

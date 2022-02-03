@@ -3,7 +3,6 @@ package redmine.utils;
 import java.util.Random;
 
 public class StringUtils {
-
     public static final String EN_STRING = "abcdeifghijklmnop";
     private static final String LATIN_PATTERN = "abcdefghijklmnopqrstuvwxyz";
     public static final Random RANDOM = new Random();

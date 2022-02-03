@@ -27,13 +27,11 @@ public class PostgresConnection implements DatabaseConnection {
     private Connection connection;
 
     public PostgresConnection() {
-
         connect();
     }
 
-    @SneakyThrows // данная анатация превращает все проверяемые исключения в непроверяемые
+    @SneakyThrows
     private void connect() {
-
         Class.forName("org.postgresql.Driver"); //загрузка драйвера
 
         //подключени к бд
@@ -41,7 +39,6 @@ public class PostgresConnection implements DatabaseConnection {
         Properties connectionProperties = new Properties();
         connectionProperties.setProperty("user", user);
         connectionProperties.setProperty("password", password);
-
         //создаем обьект типа connection
         connection = DriverManager.getConnection(url, connectionProperties);
 
@@ -60,15 +57,12 @@ public class PostgresConnection implements DatabaseConnection {
             }
 
             Allure.addAttachment("SQL-запрос", stmt.toString()); // логирование SQL запроса
-            ResultSet rs = stmt.executeQuery(); // Метод executeQuery используется в запросах,
-            // результатом которых является один единственный набор значений, таких как запросов типа SELECT.
-
+            ResultSet rs = stmt.executeQuery();
             List<Map<String, Object>> result = new ArrayList<>();
 
             while (rs.next()) {
                 Map<String, Object> oneLineResult = new HashMap<>();
                 int columnCount = rs.getMetaData().getColumnCount();
-
                 for (int i = 1; i <= columnCount; i++) {
                     String key = rs.getMetaData().getColumnName(i);
                     Object value = rs.getObject(i);
@@ -86,6 +80,5 @@ public class PostgresConnection implements DatabaseConnection {
                 throw exception;
             }
         }
-
     }
 }

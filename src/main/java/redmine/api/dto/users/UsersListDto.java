@@ -9,7 +9,6 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 public class UsersListDto {
-
     private List<UserDto> users;
 
     @SerializedName("total_count")

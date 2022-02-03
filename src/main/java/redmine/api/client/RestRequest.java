@@ -3,7 +3,6 @@ package redmine.api.client;
 import java.util.Map;
 
 public interface RestRequest {
-
     RestMethod getMethod();
 
     String getUri();

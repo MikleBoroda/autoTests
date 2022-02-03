@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import redmine.ui.pages.Page;
 import org.reflections.Reflections;
 
-
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +15,6 @@ public class PageObjectHelper {
 
     public static WebElement findElement(String pageName, String elementName) {
         return getElement(getPage(pageName), elementName);
-
     }
 
     public static List<WebElement> findElements(String pageName, String elementsName) {
@@ -41,10 +39,8 @@ public class PageObjectHelper {
                 .filter(field -> field.getAnnotation(ElementName.class).value().equals(elementName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Не найдена страница с аннотацией @ElementName(\"" + elementName + "\")"));
-
         elementField.setAccessible(true);
         return (WebElement) elementField.get(page);
-
     }
 
     @SneakyThrows

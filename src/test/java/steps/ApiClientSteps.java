@@ -16,6 +16,4 @@ public class ApiClientSteps {
         RestApiClient apiClient = AllureMethods.createApiClient(new RestAssuredClient(user));
         Context.getStash().put(apiClientStashId, apiClient);
     }
-
-
 }

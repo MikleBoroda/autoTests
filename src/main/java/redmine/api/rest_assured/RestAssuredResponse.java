@@ -1,6 +1,6 @@
 package redmine.api.rest_assured;
 
-import com.google.gson.Gson;
+
 import io.restassured.http.Header;
 import io.restassured.response.Response;
 import lombok.Getter;

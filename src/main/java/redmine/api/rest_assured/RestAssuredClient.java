@@ -18,9 +18,7 @@ import static io.restassured.RestAssured.given;
 
 
 public class RestAssuredClient implements RestApiClient {
-
     protected RequestSpecification specification;
-
 
     public RestAssuredClient() {
         this.specification = given()

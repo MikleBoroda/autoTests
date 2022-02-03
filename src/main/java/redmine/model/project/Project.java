@@ -25,7 +25,6 @@ import static redmine.model.project.Status.*;
 @Getter
 @Setter
 public class Project extends CreatableEntity implements Creatable<Project> {
-
     private String name = "Kuznetsov" + randomHexString(10);
     private String description = "DescriptionProject" + randomHexString(10);
     private String homepage = "Kuznetsov" + randomHexString(10);
@@ -40,12 +39,10 @@ public class Project extends CreatableEntity implements Creatable<Project> {
     private Integer defaultAssignedToId;
     private Map<User, List<Role>> members = new HashMap<>();
 
-
     @Step("Добавлена Роль пользователю")
     public void addUserAndRoles(User user, List<Role> roles) {
         members.put(user, roles);
     }
-
 
     @Override
     @Step("Создан проект в БД")

@@ -13,12 +13,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
-
     private Integer id;
     private String login;
     private Boolean admin;
     private Integer status;
-
 
     @SerializedName("firstname")
     private String firstName;
@@ -37,7 +35,4 @@ public class UserDto {
 
     @SerializedName("api_key")
     private String apiKey;
-
-
-
 }

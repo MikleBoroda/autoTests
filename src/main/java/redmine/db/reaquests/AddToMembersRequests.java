@@ -1,16 +1,12 @@
 package redmine.db.reaquests;
 
-
 import redmine.db.connection.PostgresConnection;
-
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
 public class AddToMembersRequests {
-
-
     public Integer addMember(Integer userId, Integer projectId) {
         String query = "INSERT INTO public.members\n" +
                 "(id, user_id, project_id, created_on, mail_notification)\n" +
@@ -26,7 +22,6 @@ public class AddToMembersRequests {
         Integer id = (Integer) result.get(0).get("id");
         return id;
     }
-
 
     public void addMemberRole(Integer memberId, Integer roleId) {
         String query = "INSERT INTO public.member_roles\n" +

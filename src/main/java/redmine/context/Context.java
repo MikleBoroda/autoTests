@@ -10,7 +10,6 @@ public class Context {
         }
 
         return stash.get();
-
     }
 
     public static void clearStash() {

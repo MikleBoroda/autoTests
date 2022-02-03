@@ -14,7 +14,6 @@ import redmine.ui.pages.HeaderPage;
 import redmine.ui.pages.LoginPage;
 import redmine.ui.pages.Page;
 import redmine.ui.pages.UserTablePage;
-import redmine.utils.CompareUtils;
 import redmine.utils.StringUtils;
 
 import java.util.ArrayList;
@@ -103,7 +102,10 @@ public class UiSteps {
     public void notSortedAttribute(String attribute) {
         List<WebElement> attributeContent = findElements("Пользователи", attribute);
         List<String> attributeText = getElementsText(attributeContent);
-        assertSortedFalse(checkSortedList(attributeText));
+        Comparator<String> comparator = getComparator("По возрастанию");
+        List<String> copyValuesAttribute = new ArrayList<>(attributeText);
+        copyValuesAttribute.sort(comparator);
+        AllureAssert.assertSortedFalse(attributeText.equals(copyValuesAttribute));
     }
 
     @Затем("На странице {string} заполнить поле {string}")
@@ -115,6 +117,5 @@ public class UiSteps {
                  break;
             default: webElement.sendKeys(StringUtils.randomEnglishString(7));
         }
-
     }
 }

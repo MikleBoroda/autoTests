@@ -41,7 +41,6 @@ public class UserRequests implements Create<User>, Delete, Update<User>, Read<Us
         );
         Integer userId = (Integer) result.get(0).get("id");
         user.setId(userId);
-
     }
 
     @Override
@@ -116,12 +115,7 @@ public class UserRequests implements Create<User>, Delete, Update<User>, Read<Us
         List<Map<String, Object>> result = PostgresConnection.INSTANCE.executeQuery(query, login);
         User user = new User();
         user.setLogin((String) result.get(0).get("login"));
-
         return user;
-
-
     }
-
-
 }
 
