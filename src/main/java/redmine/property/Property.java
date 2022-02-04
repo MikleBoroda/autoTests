@@ -17,7 +17,12 @@ public class Property {
     }
 
     public static String getStringProperty(String key) {
-        if (!isInitialized) init();
+        if (!isInitialized) {
+            init();
+        }
+        if (System.getProperty(key) != null) {
+            return System.getProperty(key);
+        }
         return properties.getProperty(key);
     }
 
