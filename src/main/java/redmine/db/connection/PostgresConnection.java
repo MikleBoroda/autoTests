@@ -47,7 +47,7 @@ public class PostgresConnection implements DatabaseConnection {
     @Override
     @SneakyThrows
     @Step("Выполнение SQL запроса")
-    public List<Map<String, Object>> executeQuery(String query, Object... parameters) {
+    public synchronized List<Map<String, Object>> executeQuery(String query, Object... parameters) {
         try {
             PreparedStatement stmt = connection.prepareStatement(query);
 
@@ -55,11 +55,10 @@ public class PostgresConnection implements DatabaseConnection {
                 stmt.setObject(i + 1, parameters[i]);
 
             }
-
             Allure.addAttachment("SQL-запрос", stmt.toString()); // логирование SQL запроса
             ResultSet rs = stmt.executeQuery();
-            List<Map<String, Object>> result = new ArrayList<>();
 
+            List<Map<String, Object>> result = new ArrayList<>();
             while (rs.next()) {
                 Map<String, Object> oneLineResult = new HashMap<>();
                 int columnCount = rs.getMetaData().getColumnCount();
