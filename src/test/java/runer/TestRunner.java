@@ -1,4 +1,4 @@
-package redmine.runer;
+package runer;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
