@@ -9,7 +9,6 @@ import redmine.ui.BrowserUtils;
 import java.util.List;
 
 import static redmine.allure.asserts.AllureAssert.*;
-import static redmine.allure.asserts.AllureAssert.click;
 import static redmine.utils.CompareUtils.*;
 
 public class SortingListOfUsersByUser extends BaseUITest {
@@ -24,11 +23,11 @@ public class SortingListOfUsersByUser extends BaseUITest {
             setIsAdmin(true);
         }}.create();
 
-        User user1 = new User() {{
+       new User() {{
             setStatus(Status.ACTIVE);
         }}.create();
 
-        User user2 = new User() {{
+        new User() {{
             setStatus(Status.ACTIVE);
         }}.create();
 

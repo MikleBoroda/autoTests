@@ -51,8 +51,6 @@ public class CrudSystemTest {
                                 .setStatus(2)
                 )
         );
-
-
     }
 
     @Test(description = "Создание, изменение, получение, удаление пользователя. Администратор системы")
@@ -64,7 +62,6 @@ public class CrudSystemTest {
         getToGetAUser(userId);
         deleteToDeleteAUser(userId);
         repeatDelete(userId);
-
     }
 
     //Step 1. Отправить запрос POST на создание пользователя (данные пользователя должны быть сгенерированы корректно,
@@ -89,7 +86,6 @@ public class CrudSystemTest {
                 "В базе данных есть информация о созданном пользователе, status = 2");
 
         return userResponse.getId();
-
     }
 
     @Step("Отправить запрос POST на создание пользователя повторно с тем же телом запроса")
@@ -102,9 +98,7 @@ public class CrudSystemTest {
         Errors errorsResponse = response.getPayload(Errors.class);
         assertEquals(errorsResponse.getErrors().get(0), "Email уже существует");
         assertEquals(errorsResponse.getErrors().get(1), "Пользователь уже существует");
-
     }
-
 
     @Step("Отправить запрос POST на создание пользователя повторно с тем же телом запроса, \"email\" на невалидный, а \"password\" - 4 символа")
     private void createPostBadEmailAndPass() {
@@ -124,7 +118,6 @@ public class CrudSystemTest {
         assertEquals(checkErrorThirdStep.getErrors().get(2), "Пароль недостаточной длины (не может быть меньше 8 символа)");
         body.getUser().setMail(postBox);
         body.getUser().setPassword(pass);
-
     }
 
 
@@ -140,7 +133,6 @@ public class CrudSystemTest {
         assertEquals(user2.getStatus(), Status.ACTIVE, " Изменен status = 1");
     }
 
-
     @Step("Отправить запрос GET на получение пользователя")
     private void getToGetAUser(Integer userId) {
         RestRequest request = shapingRequest(new RestAssuredRequest(RestMethod.GET, "/users/" + userId + ".json",
@@ -149,9 +141,7 @@ public class CrudSystemTest {
         assertEquals(response.getStatusCode(), 200, "Статус код ответа 200");
         UserDto userResponse = userDtoFromResponse(response.getPayload(UserInfoDto.class).getUser());
         assertEquals(new UserRequests().read(userResponse.getId()).getStatus(), Status.ACTIVE);
-
     }
-
 
     @Step("Отправить запрос DELETE на удаление пользователя")
     private void deleteToDeleteAUser(Integer userid) {
@@ -162,7 +152,6 @@ public class CrudSystemTest {
         assertNull(new UserRequests().read(userid), "В базе данных отсутствует информация о ранее созданном пользователе");
     }
 
-
     @Step("Отправить запрос DELETE на удаление пользователя (повторно)")
     private void repeatDelete(Integer userId) {
         RestRequest request = shapingRequest(new RestAssuredRequest(RestMethod.DELETE, "/users/" + userId + ".json", null, null,
@@ -170,6 +159,4 @@ public class CrudSystemTest {
         RestResponse response = client.execute(request);
         assertEquals(response.getStatusCode(), 404, "Статус код ответа 404");
     }
-
-
 }
