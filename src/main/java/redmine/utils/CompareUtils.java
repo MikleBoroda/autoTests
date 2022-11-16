@@ -94,6 +94,4 @@ public class CompareUtils {
         Collections.sort(listSorted);
         return listSorted.equals(list);
     }
-
-
 }

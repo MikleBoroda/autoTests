@@ -28,8 +28,6 @@ public class BaseUITest {
         userTablePage = getPage(UserTablePage.class);
         projectsPage = getPage(ProjectsPage.class);
         newUsersPage = getPage(NewUsersPage.class);
-
-
     }
 
     @AfterMethod(description = "закрытие браузера")
@@ -37,5 +35,4 @@ public class BaseUITest {
     public void tearDown() {
         BrowserManager.removeBrowser();
     }
-
 }
