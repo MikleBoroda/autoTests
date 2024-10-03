@@ -19,14 +19,14 @@ public class DatabaseUserCreationTest {
         Email email1 = new Email(user);
         Email email2 = new Email(user);
         email2.setIsDefault(false);
-        Email email3 = new Email(user);
+        Email email5 = new Email(user);
         email3.setIsDefault(false);
         Email email4 = new Email(user);
         email4.setAddress("ManualTester@autoTest.ru");
         email4.setIsDefault(false);
 
         user.create();
-
+//какойто комментарий
         System.out.println(user.getLogin());
         System.out.println(token.getValue());
         System.out.println(email1.getAddress());
